@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/tab_home"
+        android:icon="@drawable/home_selector"
+        android:iconTint="@color/mainColor"
+        android:title="Home" />
+    <item
+        android:id="@+id/tab_profile"
+        android:icon="@drawable/user_selector"
+        android:iconTint="@color/mainColor"
+        android:title="Profile" />
+    <item
+        android:id="@+id/tab_wallet"
+        android:icon="@drawable/wallet_selector"
+        android:iconTint="@color/mainColor"
+        android:title="Wallet" />
+
+</menu>

@@ -3,6 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/CloudVault/CloudVault/app/src/main/res/drawable/bottom_tab_bg.xml" value="0.26205128205128203" />
+        <entry key="..\:/CloudVault/CloudVault/app/src/main/res/drawable/home_selector.xml" value="0.26205128205128203" />
+        <entry key="..\:/CloudVault/CloudVault/app/src/main/res/drawable/user_selector.xml" value="0.26205128205128203" />
+        <entry key="..\:/CloudVault/CloudVault/app/src/main/res/drawable/wallet_selector.xml" value="0.26205128205128203" />
+        <entry key="..\:/CloudVault/CloudVault/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/CloudVault/CloudVault/app/src/main/res/menu-v26/tabs.xml" value="0.25" />
+        <entry key="..\:/CloudVault/CloudVault/app/src/main/res/menu/tabs.xml" value="0.25" />
         <entry key="..\:/FlutterProjects/CloudVault/app/src/main/res/drawable-v24/google_signin_bg.xml" value="0.22314814814814815" />
         <entry key="..\:/FlutterProjects/CloudVault/app/src/main/res/drawable/google_signin_bg.xml" value="0.22314814814814815" />
         <entry key="..\:/FlutterProjects/CloudVault/app/src/main/res/layout/activity_login.xml" value="0.18055555555555555" />
