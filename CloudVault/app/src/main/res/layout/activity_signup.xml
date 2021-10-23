@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context=".SignupActivity">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/bg_1"
+            android:scaleType="centerCrop"/>
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/logo"
+            android:layout_gravity="end"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="10dp"/>
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <ImageView
+            android:id="@+id/backToLogin"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/back_icon"
+            app:tint="@color/mainColor" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/josefin_sans_bold"
+            android:text="Signup"
+            android:textColor="@color/mainColor"
+            android:textSize="60dp" />
+
+        <EditText
+            android:id="@+id/etEmailSignup"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="70dp"
+            android:background="@drawable/edit_text_bg"
+            android:fontFamily="@font/nunito_regular"
+            android:hint="Email"
+            android:paddingHorizontal="15dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/hintTextColor" />
+
+        <EditText
+            android:id="@+id/etPassSignup"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/edit_text_bg"
+            android:fontFamily="@font/nunito_regular"
+            android:hint="Password"
+            android:paddingHorizontal="15dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/hintTextColor" />
+
+        <EditText
+            android:id="@+id/etConPassSignup"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/edit_text_bg"
+            android:fontFamily="@font/nunito_regular"
+            android:hint="Confirm password"
+            android:paddingHorizontal="15dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/hintTextColor" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginTop="10dp"
+            android:gravity="end">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="invisible">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:fontFamily="@font/nunito_regular"
+                    android:gravity="end"
+                    android:text="Forgot Password?"
+                    android:textColor="@color/forgot"
+                    android:textSize="17sp" />
+
+                <ImageView
+                    android:layout_width="17dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="5dp"
+                    android:src="@drawable/right_arrow" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btnSignup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/button_bg">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="30dp"
+                android:fontFamily="@font/nunito_bold"
+                android:gravity="center_vertical"
+                android:text="Sign up"
+                android:textAllCaps="true"
+                android:textColor="#264653"
+                android:textSize="15dp" />
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="30dp"
+                android:src="@drawable/right_arrow"
+                app:tint="#264653" />
+
+        </LinearLayout>
+
+        <!--        <TextView-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_gravity="center"-->
+        <!--            android:layout_marginTop="30dp"-->
+        <!--            android:fontFamily="@font/nunito_regular"-->
+        <!--            android:gravity="center"-->
+        <!--            android:text="Or Login using"-->
+        <!--            android:textColor="@color/forgot"-->
+        <!--            android:textSize="17dp" />-->
+
+        <!--        <LinearLayout-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginTop="30dp"-->
+        <!--            android:gravity="center">-->
+
+        <!--            <ImageView-->
+        <!--                android:layout_width="100dp"-->
+        <!--                android:layout_height="80dp"-->
+        <!--                android:background="@drawable/google_signin_bg"-->
+        <!--                android:padding="20dp"-->
+        <!--                android:src="@drawable/google_logo" />-->
+
+        <!--        </LinearLayout>-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center|bottom">
+
+            <LinearLayout
+                android:id="@+id/loginIntent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunito_regular"
+                    android:text="Already have an account? "
+                    android:textColor="@color/black"
+                    android:textSize="17dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunito_regular"
+                    android:text="Login"
+                    android:textColor="@color/mainColor"
+                    android:textSize="17dp" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</FrameLayout>

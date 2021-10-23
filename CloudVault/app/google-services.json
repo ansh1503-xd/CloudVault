@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "467736301915",
+    "project_id": "cloudvault-66faa",
+    "storage_bucket": "cloudvault-66faa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:467736301915:android:3ec78bcddcd1bc48140a7e",
+        "android_client_info": {
+          "package_name": "com.sminfotech.cloudvault"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "467736301915-9vhfmb1t7rc6qjh8mv63m4rg4886k9u4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAS72-dofUmodRLPk5e_qCm3tk9EInL39k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "467736301915-9vhfmb1t7rc6qjh8mv63m4rg4886k9u4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

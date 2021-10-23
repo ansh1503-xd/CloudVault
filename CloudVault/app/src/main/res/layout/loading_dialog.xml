@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@android:color/transparent"
+    android:gravity="center"
+    app:cardCornerRadius="20dp">
+
+<!--    <androidx.cardview.widget.CardView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:background="@color/transparentBackground"-->
+<!--        app:cardCornerRadius="20dp"-->
+<!--        android:padding="10dp"-->
+<!--        app:cardElevation="100dp">-->
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/loader_bg"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:minWidth="135dp"
+            android:padding="25dp">
+
+            <com.github.ybq.android.spinkit.SpinKitView
+                style="@style/SpinKitView.Large.Pulse"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                app:SpinKit_Color="@color/buttonColor" />
+
+            <TextView
+                android:id="@+id/tvText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/nunito_regular"
+                android:textColor="@color/mainColor"
+                android:text="Logging in"
+                android:textSize="17dp" />
+
+        </LinearLayout>
+
+<!--    </androidx.cardview.widget.CardView>-->
+
+</androidx.cardview.widget.CardView>
