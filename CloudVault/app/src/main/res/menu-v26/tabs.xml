@@ -14,5 +14,9 @@
         android:icon="@drawable/wallet"
         android:iconTint="@color/mainColor"
         android:title="Wallet" />
-
+    <item
+        android:id="@+id/tab_more"
+        android:icon="@drawable/more_selector"
+        android:iconTint="@color/mainColor"
+        android:title="More" />
 </menu>

@@ -11,7 +11,8 @@
     <color name="grey">#40A5A58D</color>
     <color name="transparentBackground">#00000000</color>
     <color name="signInWithSocialMedia">#1AA5A58D</color>
+    <color name="listBackground">#21000000</color>
     <color name="hintTextColor">#A5A58D</color>
-    <color name="buttonColor">#80E76F51</color>
+    <color name="buttonColor">#F7CDC2</color>
     <color name="mainColor">#E76F51</color>
 </resources>
