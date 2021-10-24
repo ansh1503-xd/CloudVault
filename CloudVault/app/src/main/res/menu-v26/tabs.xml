@@ -1,0 +1,18 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/tab_home"
+        android:icon="@drawable/home"
+        android:title="Home"
+        android:iconTint="@color/mainColor"/>
+    <item
+        android:id="@+id/tab_profile"
+        android:icon="@drawable/user"
+        android:title="Profile"
+        android:iconTint="@color/mainColor"/>
+    <item
+        android:id="@+id/tab_wallet"
+        android:icon="@drawable/wallet"
+        android:iconTint="@color/mainColor"
+        android:title="Wallet" />
+
+</menu>
