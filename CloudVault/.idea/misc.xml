@@ -10,7 +10,7 @@
         <entry key="..\:/CloudVault/CloudVault/app/src/main/res/drawable/user_selector.xml" value="0.26205128205128203" />
         <entry key="..\:/CloudVault/CloudVault/app/src/main/res/drawable/wallet_selector.xml" value="0.26205128205128203" />
         <entry key="..\:/CloudVault/CloudVault/app/src/main/res/layout/activity_main.xml" value="0.2" />
-        <entry key="..\:/CloudVault/CloudVault/app/src/main/res/layout/activity_password.xml" value="0.264" />
+        <entry key="..\:/CloudVault/CloudVault/app/src/main/res/layout/activity_password.xml" value="0.2" />
         <entry key="..\:/CloudVault/CloudVault/app/src/main/res/layout/fragment_earn.xml" value="0.25" />
         <entry key="..\:/CloudVault/CloudVault/app/src/main/res/layout/fragment_home.xml" value="0.25" />
         <entry key="..\:/CloudVault/CloudVault/app/src/main/res/layout/fragment_more.xml" value="0.264" />
@@ -32,5 +32,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.2" />
+      </ProjectState>
+    </option>
   </component>
 </project>
