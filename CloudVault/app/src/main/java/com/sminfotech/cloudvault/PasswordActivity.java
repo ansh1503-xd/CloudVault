@@ -3,17 +3,24 @@ package com.sminfotech.cloudvault;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.chaos.view.PinView;
+import com.sminfotech.cloudvault.Model.User;
 
 public class PasswordActivity extends AppCompatActivity {
 
-    AppCompatButton one, two, three, four, five, six, seven, eight, nine, zero;
+    TextView one, two, three, four, five, six, seven, eight, nine, zero;
     PinView pvPassword;
     ImageView clearText;
+    User user = new User();
+    String inAppPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +39,7 @@ public class PasswordActivity extends AppCompatActivity {
         zero = findViewById(R.id.zero);
         pvPassword = findViewById(R.id.pvPassword);
         clearText = findViewById(R.id.clearText);
+        inAppPassword = user.getInAppPassword();
 
         one.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,6 +115,27 @@ public class PasswordActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 pvPassword.setText("");
+            }
+        });
+
+        pvPassword.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                    if (inAppPassword.equals(charSequence)){
+                        Intent intent = new Intent(PasswordActivity.this, MainActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
             }
         });
 

@@ -51,10 +51,22 @@
             android:textSize="60dp" />
 
         <EditText
-            android:id="@+id/etEmailSignup"
+            android:id="@+id/etNameSignup"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginTop="70dp"
+            android:background="@drawable/edit_text_bg"
+            android:fontFamily="@font/nunito_regular"
+            android:hint="Full Name"
+            android:paddingHorizontal="15dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/hintTextColor" />
+
+        <EditText
+            android:id="@+id/etEmailSignup"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="15dp"
             android:background="@drawable/edit_text_bg"
             android:fontFamily="@font/nunito_regular"
             android:hint="Email"

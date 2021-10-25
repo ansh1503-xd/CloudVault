@@ -20,14 +20,20 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class SignupActivity extends AppCompatActivity {
 
     FirebaseAuth auth;
     LinearLayout btnSignup;
-    EditText etEmail, etPass, etConPass;
+    EditText etEmail, etPass, etConPass, etName;
     LinearLayout loginIntent;
     ImageView backToLogin;
+    FirebaseFirestore firestore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,10 +44,12 @@ public class SignupActivity extends AppCompatActivity {
         etEmail = findViewById(R.id.etEmailSignup);
         etPass = findViewById(R.id.etPassSignup);
         etConPass = findViewById(R.id.etConPassSignup);
+        etName = findViewById(R.id.etNameSignup);
         btnSignup = findViewById(R.id.btnSignup);
         loginIntent = findViewById(R.id.loginIntent);
         backToLogin = findViewById(R.id.backToLogin);
         auth = FirebaseAuth.getInstance();
+        firestore = FirebaseFirestore.getInstance();
 
         backToLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,6 +66,7 @@ public class SignupActivity extends AppCompatActivity {
                 String email = etEmail.getText().toString();
                 String pass = etPass.getText().toString();
                 String conPass = etConPass.getText().toString();
+                String name = etName.getText().toString();
                 Dialog dialog = new Dialog(SignupActivity.this);
 
                 if (!email.isEmpty() && !pass.isEmpty() && !conPass.isEmpty()) {
@@ -76,8 +85,26 @@ public class SignupActivity extends AppCompatActivity {
                         auth.createUserWithEmailAndPassword(email, pass).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                             @Override
                             public void onSuccess(AuthResult authResult) {
-                                Snackbar.make(view, "Account created successfully", Snackbar.LENGTH_SHORT).show();
-                                dialog.dismiss();
+                                FirebaseUser firebaseUser = auth.getCurrentUser();
+                                String uid = firebaseUser.getUid();
+
+                                Map<String, Object> userData = new HashMap<>();
+                                userData.put("uid",uid);
+                                userData.put("imageList","");
+                                userData.put("inAppPassword","0000");
+                                userData.put("videoList","");
+                                userData.put("notesList","");
+                                userData.put("email", email);
+                                userData.put("fullName", name);
+
+                                firestore.collection("user").document(uid).set(userData).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void unused) {
+                                        Snackbar.make(view, "Account created successfully", Snackbar.LENGTH_SHORT).show();
+                                        dialog.dismiss();
+                                    }
+                                });
+
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                             @Override
