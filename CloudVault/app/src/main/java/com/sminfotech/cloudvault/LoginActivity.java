@@ -45,7 +45,7 @@ public class LoginActivity extends AppCompatActivity {
     ImageView googleSignIn;
     GoogleSignInClient mGoogleSignInClient;
     GoogleSignInOptions gso;
-    FirebaseUser user;
+    FirebaseUser firebaseUser;
     int GOOGLE_SIGN_IN_CODE = 111;
 
     @Override
@@ -116,15 +116,15 @@ public class LoginActivity extends AppCompatActivity {
                     auth.signInWithEmailAndPassword(email, pass).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                         @Override
                         public void onSuccess(AuthResult authResult) {
-                            dialog.dismiss();
-                            user = auth.getCurrentUser();
+                            firebaseUser = auth.getCurrentUser();
                             editor.putBoolean("isLoggedIn", true);
-                            editor.putString("uid", user.getUid());
+                            editor.putString("uid", firebaseUser.getUid());
                             editor.commit();
                             Snackbar.make(view, "Login success", Snackbar.LENGTH_SHORT).show();
                             Intent i = new Intent(LoginActivity.this, MainActivity.class);
                             startActivity(i);
                             finish();
+                            dialog.dismiss();
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
@@ -174,9 +174,9 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onSuccess(AuthResult authResult) {
                 dialog.dismiss();
-                user = auth.getCurrentUser();
+                firebaseUser = auth.getCurrentUser();
                 editor.putBoolean("isLoggedIn", true);
-                editor.putString("uid", user.getUid());
+                editor.putString("uid", firebaseUser.getUid());
                 editor.commit();
 //                Snackbar.make(googleSignIn, "Login success", Snackbar.LENGTH_LONG).show();
                 Toast.makeText(LoginActivity.this, "Login success", Toast.LENGTH_SHORT).show();

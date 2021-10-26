@@ -1,5 +1,9 @@
 package com.sminfotech.cloudvault;
 
+import static com.sminfotech.cloudvault.MainActivity.loginuid;
+import static com.sminfotech.cloudvault.MainActivity.user;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
@@ -12,15 +16,27 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.chaos.view.PinView;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.sminfotech.cloudvault.Model.User;
+
+import java.util.Objects;
 
 public class PasswordActivity extends AppCompatActivity {
 
     TextView one, two, three, four, five, six, seven, eight, nine, zero;
     PinView pvPassword;
     ImageView clearText;
-    User user = new User();
     String inAppPassword;
+    String passType;
+    Boolean isPasswordTrue = false;
+    Boolean isPasswordEnteredFirstTime = true;
+    Boolean oldPassword = true;
+    String newPassword;
+    TextView tvHint;
+    FirebaseFirestore firestore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,9 +53,13 @@ public class PasswordActivity extends AppCompatActivity {
         eight = findViewById(R.id.eight);
         nine = findViewById(R.id.nine);
         zero = findViewById(R.id.zero);
+        tvHint = findViewById(R.id.tvHint);
         pvPassword = findViewById(R.id.pvPassword);
         clearText = findViewById(R.id.clearText);
         inAppPassword = user.getInAppPassword();
+        firestore = FirebaseFirestore.getInstance();
+
+        passType = getIntent().getStringExtra("type");
 
         one.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -126,11 +146,50 @@ public class PasswordActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                    if (inAppPassword.equals(charSequence)){
-                        Intent intent = new Intent(PasswordActivity.this, MainActivity.class);
-                        startActivity(intent);
-                        finish();
+                if (pvPassword.getText().toString().length() == 4) {
+                    if (oldPassword) {
+                        if (inAppPassword.equals(pvPassword.getText().toString())) {
+                            pvPassword.setText("");
+                            isPasswordTrue = true;
+                            oldPassword = false;
+                            tvHint.setText("Set up new PIN");
+                        } else {
+                            isPasswordTrue = false;
+                            pvPassword.setText("");
+                            Snackbar.make(pvPassword, "Wrong PIN", Snackbar.LENGTH_LONG).show();
+                        }
+                    } else {
+                        if (isPasswordTrue) {
+                            if (isPasswordEnteredFirstTime) {
+                                newPassword = pvPassword.getText().toString();
+                                pvPassword.setText("");
+                                tvHint.setText("Re-enter new PIN");
+                                isPasswordEnteredFirstTime = false;
+                            } else {
+                                if (pvPassword.getText().toString().equals(newPassword)) {
+                                    firestore.collection("user").document(loginuid).update("inAppPassword", newPassword)
+                                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<Void> task) {
+                                                    Snackbar.make(pvPassword, "PIN Changed succesfully...", Snackbar.LENGTH_LONG).show();
+                                                    pvPassword.setText("");
+                                                    onBackPressed();
+                                                }
+                                            });
+                                } else {
+                                    Snackbar.make(pvPassword, "PIN not matched", Snackbar.LENGTH_LONG).show();
+                                    isPasswordEnteredFirstTime = true;
+                                    pvPassword.setText("");
+                                    tvHint.setText("Set up new PIN");
+
+                                }
+                            }
+
+                        }
                     }
+
+                }
+
             }
 
             @Override
