@@ -39,6 +39,7 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation 'junit:junit:4.+'
     implementation 'io.github.chaosleung:pinview:1.4.4'
+    implementation 'com.nambimobile.widgets:expandable-fab:1.2.1'
     implementation 'nl.joery.animatedbottombar:library:1.1.0'
     implementation 'com.airbnb.android:lottie:4.2.0'
     implementation 'com.google.android.gms:play-services-auth:19.2.0'

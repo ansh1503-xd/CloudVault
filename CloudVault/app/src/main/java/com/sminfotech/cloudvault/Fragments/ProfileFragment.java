@@ -13,15 +13,15 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.sminfotech.cloudvault.Model.User;
-import com.sminfotech.cloudvault.PasswordActivity;
+import com.sminfotech.cloudvault.Profile.PasswordActivity;
+import com.sminfotech.cloudvault.Profile.VaultActivity;
 import com.sminfotech.cloudvault.R;
 
 
 public class ProfileFragment extends Fragment {
 
     TextView tvProfileName, tvChangePin;
-    LinearLayout llChangePin;
+    LinearLayout llChangePin, llYourVault;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -31,18 +31,29 @@ public class ProfileFragment extends Fragment {
         tvProfileName = v.findViewById(R.id.tvProfileName);
         llChangePin = v.findViewById(R.id.llChangePin);
         tvChangePin = v.findViewById(R.id.tvChangePin);
+        llYourVault = v.findViewById(R.id.llYourVault);
 
+
+
+        llYourVault.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getContext(), VaultActivity.class);
+                startActivity(i);
+            }
+        });
+
+        Intent intent = new Intent(getContext(), PasswordActivity.class);
+        if (user.getInAppPassword() != null && !user.getInAppPassword().equals("")) {
+            tvChangePin.setText("Change PIN");
+            intent.putExtra("type", "change");
+        } else {
+            tvChangePin.setText("Set PIN");
+            intent.putExtra("type", "set");
+        }
         llChangePin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getContext(), PasswordActivity.class);
-                if (user.getInAppPassword() != null && !user.getInAppPassword().equals("")) {
-                    tvChangePin.setText("Change PIN");
-                    intent.putExtra("type","change");
-                } else {
-                    tvChangePin.setText("Set PIN");
-                    intent.putExtra("type","set");
-                }
                 startActivity(intent);
             }
         });

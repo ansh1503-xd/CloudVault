@@ -7,11 +7,13 @@
         <entry key="..\:/CloudVault/CloudVault/app/src/main/res/drawable/home_selector.xml" value="0.26205128205128203" />
         <entry key="..\:/CloudVault/CloudVault/app/src/main/res/drawable/list_bg.xml" value="0.26205128205128203" />
         <entry key="..\:/CloudVault/CloudVault/app/src/main/res/drawable/more_selector.xml" value="0.26205128205128203" />
+        <entry key="..\:/CloudVault/CloudVault/app/src/main/res/drawable/shake.xml" value="0.26205128205128203" />
         <entry key="..\:/CloudVault/CloudVault/app/src/main/res/drawable/user_selector.xml" value="0.26205128205128203" />
         <entry key="..\:/CloudVault/CloudVault/app/src/main/res/drawable/wallet_selector.xml" value="0.26205128205128203" />
         <entry key="..\:/CloudVault/CloudVault/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/CloudVault/CloudVault/app/src/main/res/layout/activity_password.xml" value="0.2" />
         <entry key="..\:/CloudVault/CloudVault/app/src/main/res/layout/activity_signup.xml" value="0.24166666666666667" />
+        <entry key="..\:/CloudVault/CloudVault/app/src/main/res/layout/activity_vault.xml" value="0.152" />
         <entry key="..\:/CloudVault/CloudVault/app/src/main/res/layout/fragment_earn.xml" value="0.25" />
         <entry key="..\:/CloudVault/CloudVault/app/src/main/res/layout/fragment_home.xml" value="0.25" />
         <entry key="..\:/CloudVault/CloudVault/app/src/main/res/layout/fragment_more.xml" value="0.264" />
