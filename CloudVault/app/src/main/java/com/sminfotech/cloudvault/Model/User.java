@@ -7,11 +7,17 @@ public class User {
     List<String> imageList;
     List<String> videoList;
     String inAppPassword;
-    List<String> notesList;
     String email;
     String name;
+    Boolean panicSwitch;
+    List<String> audioList;
+    List<String> documentsList;
+    List<UserNotes> notesList;
+    long totalDataQuota;
+    long usedDataQuota;
 
-    public User() { }
+    public User() {
+    }
 
     public String getUid() {
         return uid;
@@ -45,14 +51,6 @@ public class User {
         this.inAppPassword = inAppPassword;
     }
 
-    public List<String> getNotesList() {
-        return notesList;
-    }
-
-    public void setNotesList(List<String> notesList) {
-        this.notesList = notesList;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -67,5 +65,53 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Boolean getPanicSwitch() {
+        return panicSwitch;
+    }
+
+    public void setPanicSwitch(Boolean panicSwitch) {
+        this.panicSwitch = panicSwitch;
+    }
+
+    public List<String> getAudioList() {
+        return audioList;
+    }
+
+    public void setAudioList(List<String> audioList) {
+        this.audioList = audioList;
+    }
+
+    public List<UserNotes> getNotesList() {
+        return notesList;
+    }
+
+    public void setNotesList(List<UserNotes> notesList) {
+        this.notesList = notesList;
+    }
+
+    public List<String> getDocumentsList() {
+        return documentsList;
+    }
+
+    public void setDocumentsList(List<String> documentsList) {
+        this.documentsList = documentsList;
+    }
+
+    public long getTotalDataQuota() {
+        return totalDataQuota;
+    }
+
+    public void setTotalDataQuota(long totalDataQuota) {
+        this.totalDataQuota = totalDataQuota;
+    }
+
+    public long getUsedDataQuota() {
+        return usedDataQuota;
+    }
+
+    public void setUsedDataQuota(long usedDataQuota) {
+        this.usedDataQuota = usedDataQuota;
     }
 }

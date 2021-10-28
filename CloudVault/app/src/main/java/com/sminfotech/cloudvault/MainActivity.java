@@ -29,6 +29,9 @@ import com.sminfotech.cloudvault.Fragments.HomeFragment;
 import com.sminfotech.cloudvault.Fragments.MoreFragment;
 import com.sminfotech.cloudvault.Fragments.ProfileFragment;
 import com.sminfotech.cloudvault.Model.User;
+import com.sminfotech.cloudvault.Model.UserNotes;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -99,6 +102,14 @@ public class MainActivity extends AppCompatActivity {
                     user.setName((String) value.get("fullName"));
                     user.setInAppPassword((String) value.get("inAppPassword"));
                     user.setUid((String) value.get("uid"));
+                    user.setAudioList((List<String>) value.get("audioList"));
+                    user.setNotesList((List<UserNotes>) value.get("notesList"));
+                    user.setImageList((List<String>) value.get("imageList"));
+                    user.setVideoList((List<String>) value.get("videoList"));
+                    user.setDocumentsList((List<String>) value.get("documentsList"));
+                    user.setPanicSwitch((Boolean) value.get("panicSwitch"));
+                    user.setTotalDataQuota((long) value.get("totalDataQuota"));
+                    user.setUsedDataQuota((long) value.get("usedDataQuota"));
                 }
             }
         });

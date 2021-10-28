@@ -1,27 +1,34 @@
 package com.sminfotech.cloudvault.Fragments;
 
+import static com.sminfotech.cloudvault.AppConstants.interstitial_android;
+import static com.sminfotech.cloudvault.AppConstants.testMode;
+import static com.sminfotech.cloudvault.AppConstants.unityGameID;
 import static com.sminfotech.cloudvault.MainActivity.user;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.fragment.app.Fragment;
+
 import com.sminfotech.cloudvault.Profile.PasswordActivity;
 import com.sminfotech.cloudvault.Profile.VaultActivity;
 import com.sminfotech.cloudvault.R;
+import com.sminfotech.cloudvault.Unity.UnityAdsListner;
+import com.unity3d.ads.IUnityAdsShowListener;
+import com.unity3d.ads.UnityAds;
 
 
 public class ProfileFragment extends Fragment {
 
     TextView tvProfileName, tvChangePin;
     LinearLayout llChangePin, llYourVault;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -33,13 +40,39 @@ public class ProfileFragment extends Fragment {
         tvChangePin = v.findViewById(R.id.tvChangePin);
         llYourVault = v.findViewById(R.id.llYourVault);
 
-
+        UnityAdsListner myAdsListener = new UnityAdsListner();
+        UnityAds.addListener(myAdsListener);
+        UnityAds.initialize(getContext(), unityGameID, testMode);
 
         llYourVault.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(getContext(), VaultActivity.class);
-                startActivity(i);
+//                Intent i = new Intent(getContext(), VaultActivity.class);
+//                startActivity(i);
+                if (UnityAds.isInitialized()) {
+                    UnityAds.show((Activity) getContext(), interstitial_android, new IUnityAdsShowListener() {
+                        @Override
+                        public void onUnityAdsShowFailure(String s, UnityAds.UnityAdsShowError unityAdsShowError, String s1) {
+                            Intent i = new Intent(getContext(), VaultActivity.class);
+                            startActivity(i);
+                        }
+
+                        @Override
+                        public void onUnityAdsShowStart(String s) {
+                        }
+
+                        @Override
+                        public void onUnityAdsShowClick(String s) {
+
+                        }
+
+                        @Override
+                        public void onUnityAdsShowComplete(String s, UnityAds.UnityAdsShowCompletionState unityAdsShowCompletionState) {
+                            Intent i = new Intent(getContext(), VaultActivity.class);
+                            startActivity(i);
+                        }
+                    });
+                }
             }
         });
 

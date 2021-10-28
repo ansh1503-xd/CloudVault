@@ -3,4 +3,6 @@
     <string name="web_client_id">467736301915-9vhfmb1t7rc6qjh8mv63m4rg4886k9u4.apps.googleusercontent.com</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="facebook_app_id">430922042084471</string>
+    <string name="fb_login_protocol_scheme">fb430922042084471</string>
 </resources>

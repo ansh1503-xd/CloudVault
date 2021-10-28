@@ -23,6 +23,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -90,12 +91,16 @@ public class SignupActivity extends AppCompatActivity {
 
                                 Map<String, Object> userData = new HashMap<>();
                                 userData.put("uid",uid);
-                                userData.put("imageList","");
-                                userData.put("inAppPassword","0000");
-                                userData.put("videoList","");
-                                userData.put("notesList","");
+                                userData.put("imageList",Arrays.asList());
+                                userData.put("inAppPassword","");
+                                userData.put("videoList", Arrays.asList());
+                                userData.put("notesList",Arrays.asList());
+                                userData.put("documentsList",Arrays.asList());
+                                userData.put("audioList",Arrays.asList());
                                 userData.put("email", email);
                                 userData.put("fullName", name);
+                                userData.put("panicSwitch",false);
+
 
                                 firestore.collection("user").document(uid).set(userData).addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override

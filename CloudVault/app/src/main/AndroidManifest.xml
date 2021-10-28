@@ -2,7 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.sminfotech.cloudvault">
 
-    <uses-permission android:name="android.permission.USE_BIOMETRIC" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
 
     <application
         android:allowBackup="true"
@@ -11,6 +13,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.NoActionBar">
+        <activity
+            android:name=".Profile.PanicSwitchActivity"
+            android:exported="true" />
         <activity
             android:name=".Profile.VaultActivity"
             android:exported="true" />
