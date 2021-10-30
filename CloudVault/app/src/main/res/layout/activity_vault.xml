@@ -10,6 +10,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="20dp">
 
@@ -28,162 +32,187 @@
             android:text="Your Vault"
             android:textColor="@color/mainColor"
             android:textSize="50dp" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/list_bg"
-            android:gravity="center|start"
-            android:paddingHorizontal="20dp">
-
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@drawable/image"
-                app:tint="@color/mainColor" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_weight="1"
-                android:fontFamily="@font/nunito_regular"
-                android:text="Images"
-                android:textColor="@color/black"
-                android:textSize="18dp" />
-
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="40dp"
-                android:src="@drawable/next" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/list_bg"
-            android:gravity="center|start"
-            android:paddingHorizontal="20dp">
-
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@drawable/video"
-                app:tint="@color/mainColor" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_weight="1"
-                android:fontFamily="@font/nunito_regular"
-                android:text="Videos"
-                android:textColor="@color/black"
-                android:textSize="18dp" />
-
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="40dp"
-                android:src="@drawable/next" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/list_bg"
-            android:gravity="center|start"
-            android:paddingHorizontal="20dp">
-
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@drawable/notes"
-                app:tint="@color/mainColor" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_weight="1"
-                android:fontFamily="@font/nunito_regular"
-                android:text="Notes"
-                android:textColor="@color/black"
-                android:textSize="18dp" />
-
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="40dp"
-                android:src="@drawable/next" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/list_bg"
-            android:gravity="center|start"
-            android:paddingHorizontal="20dp">
-
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@drawable/document"
-                app:tint="@color/mainColor" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_weight="1"
-                android:fontFamily="@font/nunito_regular"
-                android:text="Documents"
-                android:textColor="@color/black"
-                android:textSize="18dp" />
-
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="40dp"
-                android:src="@drawable/next" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/list_bg"
-            android:gravity="center|start"
-            android:paddingHorizontal="20dp">
-
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@drawable/audio"
-                app:tint="@color/mainColor" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_weight="1"
-                android:fontFamily="@font/nunito_regular"
-                android:text="Audios"
-                android:textColor="@color/black"
-                android:textSize="18dp" />
-
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="40dp"
-                android:src="@drawable/next" />
-
-        </LinearLayout>
     </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:scrollIndicators="none"
+        android:overScrollMode="never">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:background="@drawable/list_bg"
+                android:gravity="center|start"
+                android:paddingHorizontal="20dp">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/image"
+                    app:tint="@color/mainColor" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/nunito_regular"
+                    android:text="Images"
+                    android:textColor="@color/black"
+                    android:textSize="18dp" />
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/next" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/list_bg"
+                android:gravity="center|start"
+                android:paddingHorizontal="20dp">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/video"
+                    app:tint="@color/mainColor" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/nunito_regular"
+                    android:text="Videos"
+                    android:textColor="@color/black"
+                    android:textSize="18dp" />
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/next" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/list_bg"
+                android:gravity="center|start"
+                android:paddingHorizontal="20dp">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/notes"
+                    app:tint="@color/mainColor" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/nunito_regular"
+                    android:text="Notes"
+                    android:textColor="@color/black"
+                    android:textSize="18dp" />
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/next" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/list_bg"
+                android:gravity="center|start"
+                android:paddingHorizontal="20dp">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/document"
+                    app:tint="@color/mainColor" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/nunito_regular"
+                    android:text="Documents"
+                    android:textColor="@color/black"
+                    android:textSize="18dp" />
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/next" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/list_bg"
+                android:gravity="center|start"
+                android:paddingHorizontal="20dp">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/audio"
+                    app:tint="@color/mainColor" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/nunito_regular"
+                    android:text="Audios"
+                    android:textColor="@color/black"
+                    android:textSize="18dp" />
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/next" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/bottomBannerView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
+        android:orientation="vertical" />
 
     <com.nambimobile.widgets.efab.ExpandableFabLayout
         android:layout_width="match_parent"
@@ -244,12 +273,5 @@
             app:label_text="Add note" />
 
     </com.nambimobile.widgets.efab.ExpandableFabLayout>
-
-    <LinearLayout
-        android:id="@+id/bottomBannerView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|center"
-        android:orientation="vertical" />
 
 </FrameLayout>

@@ -1,9 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg_1"
     tools:context=".Profile.PanicSwitchActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <ImageView
+            android:id="@+id/backToProfile"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:padding="10dp"
+            android:src="@drawable/back_icon"
+            app:tint="@color/mainColor" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/josefin_sans_bold"
+            android:text="Panic Switch"
+            android:textColor="@color/mainColor"
+            android:textSize="50dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nunito_regular"
+            android:text="By turning on this functionality, Whenever your phone will this application will be closed."
+            android:layout_marginTop="10dp"
+            android:textColor="@color/lightGrey"
+            android:textSize="17dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/list_bg"
+            android:gravity="center|start"
+            android:paddingHorizontal="20dp">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/panic_switch"
+                app:tint="@color/mainColor" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/nunito_regular"
+                android:text="Panic Switch"
+                android:textColor="@color/black"
+                android:textSize="18dp" />
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/panicSwitch"
+                android:layout_width="wrap_content"
+                app:switchMinWidth="30dp"
+                app:thumbTextPadding="10dp"
+                android:layout_gravity="center"
+                app:showText="true"
+                android:textSize="10dp"
+                android:textOn=""
+                android:textOff=""
+                android:fontFamily="@font/montserrat_semibold"
+                app:track="@drawable/custom_track"
+                android:thumb="@drawable/custom_thumb"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</FrameLayout>

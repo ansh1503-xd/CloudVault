@@ -1,13 +1,12 @@
 package com.sminfotech.cloudvault.Fragments;
 
-import static com.sminfotech.cloudvault.AppConstants.interstitial_android;
-import static com.sminfotech.cloudvault.AppConstants.testMode;
-import static com.sminfotech.cloudvault.AppConstants.unityGameID;
+import static com.sminfotech.cloudvault.MainActivity.appControl;
 import static com.sminfotech.cloudvault.MainActivity.user;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +15,7 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
+import com.sminfotech.cloudvault.Profile.PanicSwitchActivity;
 import com.sminfotech.cloudvault.Profile.PasswordActivity;
 import com.sminfotech.cloudvault.Profile.VaultActivity;
 import com.sminfotech.cloudvault.R;
@@ -27,7 +27,7 @@ import com.unity3d.ads.UnityAds;
 public class ProfileFragment extends Fragment {
 
     TextView tvProfileName, tvChangePin;
-    LinearLayout llChangePin, llYourVault;
+    LinearLayout llChangePin, llYourVault, llPanicSwitch;
 
 
     @Override
@@ -39,21 +39,21 @@ public class ProfileFragment extends Fragment {
         llChangePin = v.findViewById(R.id.llChangePin);
         tvChangePin = v.findViewById(R.id.tvChangePin);
         llYourVault = v.findViewById(R.id.llYourVault);
+        llPanicSwitch = v.findViewById(R.id.llPanicSwitch);
 
         UnityAdsListner myAdsListener = new UnityAdsListner();
         UnityAds.addListener(myAdsListener);
-        UnityAds.initialize(getContext(), unityGameID, testMode);
+        UnityAds.initialize(getContext(), appControl.getUnityID(), appControl.getTestMode());
 
         llYourVault.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent i = new Intent(getContext(), VaultActivity.class);
-//                startActivity(i);
                 if (UnityAds.isInitialized()) {
-                    UnityAds.show((Activity) getContext(), interstitial_android, new IUnityAdsShowListener() {
+                    UnityAds.show((Activity) getContext(), appControl.getUnityInterstitial(), new IUnityAdsShowListener() {
                         @Override
                         public void onUnityAdsShowFailure(String s, UnityAds.UnityAdsShowError unityAdsShowError, String s1) {
                             Intent i = new Intent(getContext(), VaultActivity.class);
+                            Log.d("error1111",unityAdsShowError.toString());
                             startActivity(i);
                         }
 
@@ -73,6 +73,14 @@ public class ProfileFragment extends Fragment {
                         }
                     });
                 }
+            }
+        });
+
+        llPanicSwitch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getContext(), PanicSwitchActivity.class);
+                startActivity(i);
             }
         });
 

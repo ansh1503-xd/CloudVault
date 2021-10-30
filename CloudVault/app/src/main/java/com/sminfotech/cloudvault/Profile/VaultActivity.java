@@ -1,10 +1,6 @@
 package com.sminfotech.cloudvault.Profile;
 
-import static com.sminfotech.cloudvault.AppConstants.banner_android;
-import static com.sminfotech.cloudvault.AppConstants.enableLoad;
-import static com.sminfotech.cloudvault.AppConstants.fb_banner_placement;
-import static com.sminfotech.cloudvault.AppConstants.testMode;
-import static com.sminfotech.cloudvault.AppConstants.unityGameID;
+import static com.sminfotech.cloudvault.MainActivity.appControl;
 
 import android.os.Bundle;
 import android.view.View;
@@ -43,12 +39,12 @@ public class VaultActivity extends AppCompatActivity {
         bottomBannerView = findViewById(R.id.bottomBannerView);
 
 
-        bottomBanner = new BannerView(VaultActivity.this, banner_android, new UnityBannerSize(320, 50));
+        bottomBanner = new BannerView(VaultActivity.this, appControl.getUnityBanner(), new UnityBannerSize(320, 50));
         UnityBannerListener bannerListener = new UnityBannerListener();
-        UnityAds.initialize(this, unityGameID, testMode, enableLoad);
+        UnityAds.initialize(this, appControl.getUnityID(), appControl.getTestMode(), appControl.getEnableLoad());
         bottomBanner.setListener(bannerListener);
 
-        adView = new AdView(this, fb_banner_placement, AdSize.BANNER_HEIGHT_50);
+        adView = new AdView(this, appControl.getFacebookBanner(), AdSize.BANNER_HEIGHT_50);
         bottomBannerView.addView(adView);
         listener = new AdListener() {
             @Override
@@ -77,9 +73,6 @@ public class VaultActivity extends AppCompatActivity {
 
         adView.loadAd(adView.buildLoadAdConfig().withAdListener(listener).build());
 
-
-
-
         backToProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -89,13 +82,4 @@ public class VaultActivity extends AppCompatActivity {
 
     }
 
-    private void loadAds() {
-
-        if (isFacebookAdsEnabled) {
-
-        }else{
-
-        }
-
-    }
 }

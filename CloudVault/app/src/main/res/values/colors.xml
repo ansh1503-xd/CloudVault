@@ -15,4 +15,5 @@
     <color name="hintTextColor">#A5A58D</color>
     <color name="buttonColor">#F7CDC2</color>
     <color name="mainColor">#E76F51</color>
+    <color name="lightGrey">#6c757d</color>
 </resources>
