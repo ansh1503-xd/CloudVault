@@ -45,7 +45,6 @@
             android:backgroundTint="@color/white"
             app:labelVisibilityMode="unlabeled"
             android:background="@drawable/bottom_tab_bg"
-            app:itemIconTint="@null"
             app:menu="@menu/tabs"/>
 
     </LinearLayout>

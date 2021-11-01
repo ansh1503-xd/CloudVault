@@ -35,6 +35,11 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -46,6 +51,7 @@ public class LoginActivity extends AppCompatActivity {
     GoogleSignInClient mGoogleSignInClient;
     GoogleSignInOptions gso;
     FirebaseUser firebaseUser;
+    FirebaseFirestore firestore;
     int GOOGLE_SIGN_IN_CODE = 111;
 
     @Override
@@ -60,6 +66,7 @@ public class LoginActivity extends AppCompatActivity {
         googleSignIn = findViewById(R.id.googleSignIn);
         tvForgotPass = findViewById(R.id.tvForgotPass);
         auth = FirebaseAuth.getInstance();
+        firestore = FirebaseFirestore.getInstance();
 
 
         tvForgotPass.setOnClickListener(new View.OnClickListener() {
@@ -146,15 +153,25 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
+        Dialog dialog = new Dialog(LoginActivity.this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.loading_dialog);
+        dialog.setCancelable(false);
+        dialog.getWindow().getDecorView().setBackgroundResource(android.R.color.transparent);
+        dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
+        dialog.show();
+        TextView tvText = dialog.findViewById(R.id.tvText);
+        tvText.setText("Signing in\nwith Google...");
         if (requestCode == GOOGLE_SIGN_IN_CODE) {
             try {
                 Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
                 GoogleSignInAccount account = task.getResult(ApiException.class);
                 String idToken = account.getIdToken();
                 authWithGoogle(idToken);
+
             } catch (ApiException e) {
-                Snackbar.make(googleSignIn, "Login failed", Snackbar.LENGTH_LONG).show();
+                Snackbar.make(googleSignIn, e.getLocalizedMessage(), Snackbar.LENGTH_LONG).show();
             }
         }
 
@@ -175,6 +192,29 @@ public class LoginActivity extends AppCompatActivity {
             public void onSuccess(AuthResult authResult) {
                 dialog.dismiss();
                 firebaseUser = auth.getCurrentUser();
+
+                Map<String, Object> userData = new HashMap<>();
+                userData.put("uid",firebaseUser.getUid());
+                userData.put("imageList", Arrays.asList());
+                userData.put("inAppPassword","");
+                userData.put("videoList", Arrays.asList());
+                userData.put("notesList",Arrays.asList());
+                userData.put("documentsList",Arrays.asList());
+                userData.put("audioList",Arrays.asList());
+                userData.put("email", firebaseUser.getEmail());
+                userData.put("fullName", firebaseUser.getDisplayName());
+                userData.put("panicSwitch",false);
+                userData.put("usedDataQuota",0);
+                userData.put("totalDataQuota",100);
+
+
+                firestore.collection("user").document(firebaseUser.getUid()).set(userData).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Snackbar.make(googleSignIn, "Logged in successfully", Snackbar.LENGTH_SHORT).show();
+                        dialog.dismiss();
+                    }
+                });
                 editor.putBoolean("isLoggedIn", true);
                 editor.putString("uid", firebaseUser.getUid());
                 editor.commit();

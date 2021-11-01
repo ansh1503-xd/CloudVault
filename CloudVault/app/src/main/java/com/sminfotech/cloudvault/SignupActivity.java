@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -100,13 +101,17 @@ public class SignupActivity extends AppCompatActivity {
                                 userData.put("email", email);
                                 userData.put("fullName", name);
                                 userData.put("panicSwitch",false);
+                                userData.put("usedDataQuota",0);
+                                userData.put("totalDataQuota",100);
 
 
                                 firestore.collection("user").document(uid).set(userData).addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void unused) {
-                                        Snackbar.make(view, "Account created successfully", Snackbar.LENGTH_SHORT).show();
+//                                        Snackbar.make(view, "Account created successfully, Login to continue", Snackbar.LENGTH_SHORT).show();
+                                        Toast.makeText(SignupActivity.this, "Account created successfully, Login to continue", Toast.LENGTH_SHORT).show();
                                         dialog.dismiss();
+                                        onBackPressed();
                                     }
                                 });
 

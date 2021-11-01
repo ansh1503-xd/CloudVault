@@ -22,6 +22,11 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
     List<String> videoList;
     Activity activity;
 
+    public VideoAdapter(List<String> videoList, Activity activity) {
+        this.videoList = videoList;
+        this.activity = activity;
+    }
+
     @NonNull
     @Override
     public VideoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -31,7 +36,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
 
     @Override
     public void onBindViewHolder(@NonNull VideoViewHolder holder, @SuppressLint("RecyclerView") int position) {
-        Glide.with(activity).load(videoList.get(position)).placeholder(R.drawable.panic_switch).into(holder.ivImage);
+        Glide.with(activity).load(videoList.get(position)).placeholder(R.color.grey).into(holder.ivImage);
         holder.ivImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

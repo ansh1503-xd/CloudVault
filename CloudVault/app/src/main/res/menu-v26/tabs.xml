@@ -2,12 +2,12 @@
 
     <item
         android:id="@+id/tab_profile"
-        android:icon="@drawable/user"
+        android:icon="@drawable/user_selector"
         android:title="Profile"
         android:iconTint="@color/mainColor"/>
     <item
         android:id="@+id/tab_wallet"
-        android:icon="@drawable/wallet"
+        android:icon="@drawable/wallet_selector"
         android:iconTint="@color/mainColor"
         android:title="Wallet" />
     <item

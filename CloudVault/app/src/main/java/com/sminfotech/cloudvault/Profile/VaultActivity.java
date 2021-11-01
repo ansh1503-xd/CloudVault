@@ -58,7 +58,6 @@ public class VaultActivity extends AppCompatActivity {
             @Override
             public void onError(Ad ad, AdError adError) {
                 isFacebookAdsEnabled = false;
-                Toast.makeText(VaultActivity.this, adError.getErrorMessage(), Toast.LENGTH_SHORT).show();
                 bottomBannerView.addView(bottomBanner);
                 bottomBanner.load();
             }

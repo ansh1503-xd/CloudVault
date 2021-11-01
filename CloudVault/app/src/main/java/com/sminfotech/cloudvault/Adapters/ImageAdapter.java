@@ -36,7 +36,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
 
     @Override
     public void onBindViewHolder(@NonNull ImageViewHolder holder, @SuppressLint("RecyclerView") int position) {
-        Glide.with(activity).load(imageList.get(position)).placeholder(R.drawable.panic_switch).into(holder.ivImage);
+        Glide.with(activity).load(imageList.get(position)).placeholder(R.color.grey).into(holder.ivImage);
         holder.ivImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

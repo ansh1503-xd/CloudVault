@@ -67,9 +67,9 @@ public class ImageOrVideoActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (type.equals("image")){
                     Dialog dialog = new Dialog(ImageOrVideoActivity.this);
+                    dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                     dialog.setContentView(R.layout.confirmation_popup);
                     dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
-                    dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                     dialog.setCancelable(false);
                     TextView confirmDelete = dialog.findViewById(R.id.confirmDelete);
                     TextView cancelDialog = dialog.findViewById(R.id.cancelDialog);
@@ -81,6 +81,7 @@ public class ImageOrVideoActivity extends AppCompatActivity {
                                         @Override
                                         public void onSuccess(Void unused) {
                                             Snackbar.make(deleteImage, "Deleted successfully...", Snackbar.LENGTH_LONG).show();
+                                            dialog.dismiss();
                                             onBackPressed();
                                         }
                                     });
@@ -127,8 +128,8 @@ public class ImageOrVideoActivity extends AppCompatActivity {
         DownloadManager.Request request = new DownloadManager.Request(downloadUri);
 
         request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI | DownloadManager.Request.NETWORK_MOBILE)
-                .setAllowedOverRoaming(false).setTitle("Demo")
-                .setDescription("Something useful. No, really.")
+                .setAllowedOverRoaming(false).setTitle("Cloud Vault")
+                .setDescription("Downloading")
                 .setDestinationInExternalPublicDir("/CloudVault", "fileName.jpg");
         mgr.enqueue(request);
 

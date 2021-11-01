@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'com.google.gms.google-services'
+    id 'com.google.firebase.firebase-perf'
 }
 
 android {
@@ -39,6 +40,8 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation files('E:\\CloudVault\\unity-ads.aar')
     implementation 'com.google.firebase:firebase-storage:20.0.0'
+    implementation 'com.google.firebase:firebase-appindexing:20.0.0'
+    implementation 'com.google.firebase:firebase-perf:20.0.3'
     testImplementation 'junit:junit:4.+'
     implementation 'io.github.chaosleung:pinview:1.4.4'
     implementation 'com.nambimobile.widgets:expandable-fab:1.2.1'
