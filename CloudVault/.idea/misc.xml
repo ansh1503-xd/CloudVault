@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/CloudVault/CloudVault/app/src/main/res/drawable/bottom_tab_bg.xml" value="0.26205128205128203" />
+        <entry key="..\:/CloudVault/CloudVault/app/src/main/res/drawable/button_bg.xml" value="0.2601851851851852" />
         <entry key="..\:/CloudVault/CloudVault/app/src/main/res/drawable/custom_thumb.xml" value="0.26205128205128203" />
         <entry key="..\:/CloudVault/CloudVault/app/src/main/res/drawable/custom_track.xml" value="0.26205128205128203" />
         <entry key="..\:/CloudVault/CloudVault/app/src/main/res/drawable/home_selector.xml" value="0.26205128205128203" />
@@ -13,15 +14,19 @@
         <entry key="..\:/CloudVault/CloudVault/app/src/main/res/drawable/user_selector.xml" value="0.26205128205128203" />
         <entry key="..\:/CloudVault/CloudVault/app/src/main/res/drawable/vault_bg.xml" value="0.26205128205128203" />
         <entry key="..\:/CloudVault/CloudVault/app/src/main/res/drawable/wallet_selector.xml" value="0.26205128205128203" />
+        <entry key="..\:/CloudVault/CloudVault/app/src/main/res/layout/activity_image_or_video.xml" value="0.2" />
         <entry key="..\:/CloudVault/CloudVault/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/CloudVault/CloudVault/app/src/main/res/layout/activity_panic_switch.xml" value="0.176" />
         <entry key="..\:/CloudVault/CloudVault/app/src/main/res/layout/activity_password.xml" value="0.2" />
         <entry key="..\:/CloudVault/CloudVault/app/src/main/res/layout/activity_signup.xml" value="0.2" />
+        <entry key="..\:/CloudVault/CloudVault/app/src/main/res/layout/activity_upload_image.xml" value="0.2" />
         <entry key="..\:/CloudVault/CloudVault/app/src/main/res/layout/activity_vault.xml" value="0.2" />
         <entry key="..\:/CloudVault/CloudVault/app/src/main/res/layout/fragment_earn.xml" value="0.25" />
         <entry key="..\:/CloudVault/CloudVault/app/src/main/res/layout/fragment_home.xml" value="0.25" />
         <entry key="..\:/CloudVault/CloudVault/app/src/main/res/layout/fragment_more.xml" value="0.264" />
         <entry key="..\:/CloudVault/CloudVault/app/src/main/res/layout/fragment_profile.xml" value="0.264" />
+        <entry key="..\:/CloudVault/CloudVault/app/src/main/res/layout/img_list_item.xml" value="0.25" />
+        <entry key="..\:/CloudVault/CloudVault/app/src/main/res/layout/select_media_popup.xml" value="0.176" />
         <entry key="..\:/CloudVault/CloudVault/app/src/main/res/menu-v26/tabs.xml" value="0.25" />
         <entry key="..\:/CloudVault/CloudVault/app/src/main/res/menu/tabs.xml" value="0.25" />
         <entry key="..\:/FlutterProjects/CloudVault/app/src/main/res/drawable-v24/google_signin_bg.xml" value="0.22314814814814815" />

@@ -48,31 +48,33 @@ public class ProfileFragment extends Fragment {
         llYourVault.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (UnityAds.isInitialized()) {
-                    UnityAds.show((Activity) getContext(), appControl.getUnityInterstitial(), new IUnityAdsShowListener() {
-                        @Override
-                        public void onUnityAdsShowFailure(String s, UnityAds.UnityAdsShowError unityAdsShowError, String s1) {
-                            Intent i = new Intent(getContext(), VaultActivity.class);
-                            Log.d("error1111",unityAdsShowError.toString());
-                            startActivity(i);
-                        }
-
-                        @Override
-                        public void onUnityAdsShowStart(String s) {
-                        }
-
-                        @Override
-                        public void onUnityAdsShowClick(String s) {
-
-                        }
-
-                        @Override
-                        public void onUnityAdsShowComplete(String s, UnityAds.UnityAdsShowCompletionState unityAdsShowCompletionState) {
-                            Intent i = new Intent(getContext(), VaultActivity.class);
-                            startActivity(i);
-                        }
-                    });
-                }
+                Intent i = new Intent(getContext(), VaultActivity.class);
+                startActivity(i);
+//                if (UnityAds.isInitialized()) {
+//                    UnityAds.show((Activity) getContext(), appControl.getUnityInterstitial(), new IUnityAdsShowListener() {
+//                        @Override
+//                        public void onUnityAdsShowFailure(String s, UnityAds.UnityAdsShowError unityAdsShowError, String s1) {
+//                            Intent i = new Intent(getContext(), VaultActivity.class);
+//                            Log.d("error1111",unityAdsShowError.toString());
+//                            startActivity(i);
+//                        }
+//
+//                        @Override
+//                        public void onUnityAdsShowStart(String s) {
+//                        }
+//
+//                        @Override
+//                        public void onUnityAdsShowClick(String s) {
+//
+//                        }
+//
+//                        @Override
+//                        public void onUnityAdsShowComplete(String s, UnityAds.UnityAdsShowCompletionState unityAdsShowCompletionState) {
+//                            Intent i = new Intent(getContext(), VaultActivity.class);
+//                            startActivity(i);
+//                        }
+//                    });
+//                }
             }
         });
 

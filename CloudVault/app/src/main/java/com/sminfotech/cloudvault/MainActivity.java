@@ -1,15 +1,19 @@
 package com.sminfotech.cloudvault;
 
+import static com.sminfotech.cloudvault.Profile.PanicSwitchActivity.destroyAppWhenShake;
+
+import android.content.SharedPreferences;
+import android.hardware.SensorManager;
+import android.os.Bundle;
+import android.view.MenuItem;
+import android.widget.FrameLayout;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-
-import android.os.Bundle;
-import android.view.MenuItem;
-import android.widget.FrameLayout;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
@@ -31,7 +35,6 @@ import com.sminfotech.cloudvault.Fragments.ProfileFragment;
 import com.sminfotech.cloudvault.Model.AppControl;
 import com.sminfotech.cloudvault.Model.User;
 import com.sminfotech.cloudvault.Model.UserNotes;
-import com.sminfotech.cloudvault.Profile.PanicSwitchActivity;
 
 import java.util.List;
 
@@ -47,6 +50,10 @@ public class MainActivity extends AppCompatActivity {
     FirebaseUser firebaseUser;
     AdView adView;
     AdView mAdView;
+    public static SensorManager manager;
+    public static SharedPreferences sp;
+    public static SharedPreferences.Editor editor;
+    public static Boolean isPanicSwitchOn = false;
 
 
     @Override
@@ -59,6 +66,10 @@ public class MainActivity extends AppCompatActivity {
         bottomTabContainer = findViewById(R.id.bottomTabContainer);
         firestore = FirebaseFirestore.getInstance();
 
+        sp = getSharedPreferences("panicSwitch", MODE_PRIVATE);
+        editor = sp.edit();
+
+        isPanicSwitchOn = sp.getBoolean("isPanicSwitchOn", false);
 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -66,18 +77,16 @@ public class MainActivity extends AppCompatActivity {
         setDataToModelFromFirebsae();
         setUpAppControl();
 
+        manager = (SensorManager) getSystemService(SENSOR_SERVICE);
 
 
+        destroyAppWhenShake(manager, MainActivity.this);
 
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
             @Override
             public void onInitializationComplete(InitializationStatus initializationStatus) {
                 setUpBottomNavigation();
-                if (user.getPanicSwitch()) {
 
-                } else {
-
-                }
             }
         });
 
