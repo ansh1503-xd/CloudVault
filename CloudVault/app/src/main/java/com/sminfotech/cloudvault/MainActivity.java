@@ -2,11 +2,14 @@ package com.sminfotech.cloudvault;
 
 import static com.sminfotech.cloudvault.Profile.PanicSwitchActivity.destroyAppWhenShake;
 
+import android.app.Dialog;
 import android.content.SharedPreferences;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.Window;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -35,6 +38,7 @@ import com.sminfotech.cloudvault.Fragments.ProfileFragment;
 import com.sminfotech.cloudvault.Model.AppControl;
 import com.sminfotech.cloudvault.Model.User;
 import com.sminfotech.cloudvault.Model.UserNotes;
+import com.sminfotech.cloudvault.Profile.ImageOrVideoActivity;
 
 import java.util.List;
 
@@ -74,11 +78,19 @@ public class MainActivity extends AppCompatActivity {
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
         loginuid = firebaseUser.getUid();
+
         setDataToModelFromFirebsae();
         setUpAppControl();
 
-        manager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        Dialog dialog = new Dialog(MainActivity.this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.loading_dialog);
+        dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        dialog.setCancelable(false);
+        TextView tvText = dialog.findViewById(R.id.tvText);
+        tvText.setText("Loading...");
 
+        manager = (SensorManager) getSystemService(SENSOR_SERVICE);
 
         destroyAppWhenShake(manager, MainActivity.this);
 
@@ -86,9 +98,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onInitializationComplete(InitializationStatus initializationStatus) {
                 setUpBottomNavigation();
-
+                dialog.dismiss();
             }
         });
+        dialog.show();
 
         adView = new AdView(this);
         adView.setAdSize(AdSize.BANNER);

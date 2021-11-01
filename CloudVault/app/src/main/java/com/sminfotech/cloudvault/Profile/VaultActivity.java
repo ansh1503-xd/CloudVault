@@ -1,9 +1,7 @@
 package com.sminfotech.cloudvault.Profile;
 
 import static com.sminfotech.cloudvault.MainActivity.appControl;
-import static com.sminfotech.cloudvault.MainActivity.isPanicSwitchOn;
 import static com.sminfotech.cloudvault.MainActivity.manager;
-import static com.sminfotech.cloudvault.MainActivity.user;
 import static com.sminfotech.cloudvault.Profile.PanicSwitchActivity.destroyAppWhenShake;
 
 import android.content.Intent;
@@ -20,10 +18,8 @@ import com.facebook.ads.AdError;
 import com.facebook.ads.AdListener;
 import com.facebook.ads.AdSize;
 import com.facebook.ads.AdView;
-import com.sminfotech.cloudvault.MainActivity;
 import com.sminfotech.cloudvault.R;
 import com.sminfotech.cloudvault.Unity.UnityBannerListener;
-import com.sminfotech.cloudvault.UploadImageActivity;
 import com.unity3d.ads.UnityAds;
 import com.unity3d.services.banners.BannerView;
 import com.unity3d.services.banners.UnityBannerSize;
@@ -34,7 +30,7 @@ public class VaultActivity extends AppCompatActivity {
     BannerView bottomBanner;
     LinearLayout bottomBannerView;
     AdView adView;
-    LinearLayout llImage;
+    LinearLayout llImage, llVideo;
     Boolean isFacebookAdsEnabled = true;
     AdListener listener;
 
@@ -46,6 +42,7 @@ public class VaultActivity extends AppCompatActivity {
         backToProfile = findViewById(R.id.backToProfile);
         bottomBannerView = findViewById(R.id.bottomBannerView);
         llImage = findViewById(R.id.llImage);
+        llVideo = findViewById(R.id.llVideo);
 
 
         bottomBanner = new BannerView(VaultActivity.this, appControl.getUnityBanner(), new UnityBannerSize(320, 50));
@@ -95,6 +92,14 @@ public class VaultActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(VaultActivity.this, UploadImageActivity.class);
+                startActivity(i);
+            }
+        });
+
+        llVideo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(VaultActivity.this, UploadVideoActivity.class);
                 startActivity(i);
             }
         });

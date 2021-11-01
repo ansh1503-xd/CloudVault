@@ -4,8 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ImageOrVideoActivity"
+    tools:context=".Profile.ImageOrVideoActivity"
     android:background="@color/black">
+
+    <VideoView
+        android:id="@+id/videoFromIntent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone"/>
+
+    <ImageView
+        android:id="@+id/imageFromIntent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone"/>
 
     <ImageView
         android:id="@+id/close"
@@ -19,11 +33,17 @@
         android:layout_marginTop="15dp"
         android:layout_marginEnd="15dp"/>
 
-    <ImageView
-        android:id="@+id/imageFromIntent"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/deleteImage"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"/>
+        android:text="Delete"
+        android:fontFamily="@font/nunito_bold"
+        android:textSize="20dp"
+        android:padding="15dp"/>
+
+
+
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabDownloadImage"

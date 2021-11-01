@@ -38,6 +38,7 @@ dependencies {
     implementation 'com.github.ybq:Android-SpinKit:1.4.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation files('E:\\CloudVault\\unity-ads.aar')
+    implementation 'com.google.firebase:firebase-storage:20.0.0'
     testImplementation 'junit:junit:4.+'
     implementation 'io.github.chaosleung:pinview:1.4.4'
     implementation 'com.nambimobile.widgets:expandable-fab:1.2.1'

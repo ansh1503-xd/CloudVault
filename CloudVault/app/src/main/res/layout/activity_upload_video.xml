@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".Profile.UploadImageActivity">
+    tools:context=".Profile.UploadVideoActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -24,7 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/nunito_regular"
-            android:text="Images"
+            android:text="Videos"
             android:layout_marginStart="10dp"
             android:textColor="@color/mainColor"
             android:textSize="25dp" />
@@ -32,7 +32,7 @@
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvImage"
+        android:id="@+id/rvVideo"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:listitem="@layout/img_list_item"
@@ -42,7 +42,7 @@
         android:padding="5dp"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabUploadImage"
+        android:id="@+id/fabUploadVideo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"

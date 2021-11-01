@@ -17,32 +17,27 @@ import com.sminfotech.cloudvault.R;
 
 import java.util.List;
 
-public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHolder> {
+public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHolder> {
 
-    List<String> imageList;
+    List<String> videoList;
     Activity activity;
-
-    public ImageAdapter(List<String> imageList, Activity activity) {
-        this.imageList = imageList;
-        this.activity = activity;
-    }
 
     @NonNull
     @Override
-    public ImageViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public VideoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.img_list_item, parent, false);
-        return new ImageViewHolder(view);
+        return new VideoViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ImageViewHolder holder, @SuppressLint("RecyclerView") int position) {
-        Glide.with(activity).load(imageList.get(position)).placeholder(R.drawable.panic_switch).into(holder.ivImage);
+    public void onBindViewHolder(@NonNull VideoViewHolder holder, @SuppressLint("RecyclerView") int position) {
+        Glide.with(activity).load(videoList.get(position)).placeholder(R.drawable.panic_switch).into(holder.ivImage);
         holder.ivImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(activity, ImageOrVideoActivity.class);
-                i.putExtra("type", "image");
-                i.putExtra("imageUrl",imageList.get(position));
+                i.putExtra("type", "video");
+                i.putExtra("imageUrl", videoList.get(position));
                 activity.startActivity(i);
             }
         });
@@ -50,14 +45,13 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
 
     @Override
     public int getItemCount() {
-        return imageList.size();
+        return videoList.size();
     }
 
-    public class ImageViewHolder extends RecyclerView.ViewHolder {
-
+    public class VideoViewHolder extends RecyclerView.ViewHolder {
         ImageView ivImage;
 
-        public ImageViewHolder(@NonNull View itemView) {
+        public VideoViewHolder(@NonNull View itemView) {
             super(itemView);
             ivImage = itemView.findViewById(R.id.ivImage);
         }

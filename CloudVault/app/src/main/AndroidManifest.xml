@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.sminfotech.cloudvault">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -17,10 +18,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.NoActionBar">
         <activity
-            android:name=".ImageOrVideoActivity"
+            android:name=".Profile.ImageOrVideoActivity"
             android:exported="true" />
         <activity
-            android:name=".UploadImageActivity"
+            android:name=".Profile.UploadImageActivity"
+            android:exported="true" />
+        <activity
+            android:name=".Profile.UploadVideoActivity"
             android:exported="true" />
 
         <meta-data
@@ -57,6 +61,17 @@
             android:name=".LoginActivity"
             android:exported="true" />
         <activity android:name=".SignupActivity" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.example.android.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true"
+            tools:replace="android:authorities">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
     </application>
 
 </manifest>
