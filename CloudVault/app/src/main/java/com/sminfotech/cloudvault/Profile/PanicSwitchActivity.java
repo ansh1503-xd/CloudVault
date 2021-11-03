@@ -82,34 +82,33 @@ public class PanicSwitchActivity extends AppCompatActivity {
         final float[] mAccelCurrent = new float[1];
         final float[] mAccelLast = new float[1];
 
-        if (isPanicSwitchOn){
-            Objects.requireNonNull(manager).registerListener(
-                    new SensorEventListener() {
-                        @Override
-                        public void onSensorChanged(SensorEvent sensorEvent) {
-                            mAccel[0] = 10f;
-                            mAccelCurrent[0] = SensorManager.GRAVITY_EARTH;
-                            mAccelLast[0] = SensorManager.GRAVITY_EARTH;
-                            float x = sensorEvent.values[0];
-                            float y = sensorEvent.values[1];
-                            float z = sensorEvent.values[2];
-                            mAccelLast[0] = mAccelCurrent[0];
-                            mAccelCurrent[0] = (float) Math.sqrt((double) (x * x + y * y + z * z));
-                            float delta = mAccelCurrent[0] - mAccelLast[0];
-                            mAccel[0] = mAccel[0] * 0.9f + delta;
-                            if (mAccel[0] > 12) {
-                                Toast.makeText(activity, "Shake event detected", Toast.LENGTH_SHORT).show();
-                                activity.onBackPressed();
-                            }
+        Objects.requireNonNull(manager).registerListener(
+                new SensorEventListener() {
+                    @Override
+                    public void onSensorChanged(SensorEvent sensorEvent) {
+                        mAccel[0] = 10f;
+                        mAccelCurrent[0] = SensorManager.GRAVITY_EARTH;
+                        mAccelLast[0] = SensorManager.GRAVITY_EARTH;
+                        float x = sensorEvent.values[0];
+                        float y = sensorEvent.values[1];
+                        float z = sensorEvent.values[2];
+                        mAccelLast[0] = mAccelCurrent[0];
+                        mAccelCurrent[0] = (float) Math.sqrt((double) (x * x + y * y + z * z));
+                        float delta = mAccelCurrent[0] - mAccelLast[0];
+                        mAccel[0] = mAccel[0] * 0.9f + delta;
+                        if (mAccel[0] > 12) {
+                            Toast.makeText(activity, "Shake event detected", Toast.LENGTH_SHORT).show();
+                            activity.onBackPressed();
                         }
+                    }
 
-                        @Override
-                        public void onAccuracyChanged(Sensor sensor, int i) {
+                    @Override
+                    public void onAccuracyChanged(Sensor sensor, int i) {
 
-                        }
-                    }, manager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
-                    SensorManager.SENSOR_DELAY_NORMAL);
-        }
+                    }
+                }, manager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
+                SensorManager.SENSOR_DELAY_NORMAL);
+
 
     }
 

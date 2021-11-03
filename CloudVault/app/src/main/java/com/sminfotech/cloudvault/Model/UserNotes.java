@@ -4,6 +4,9 @@ public class UserNotes {
 
     String title;
     String body;
+    String uid;
+    String noteId;
+    Double createdAt;
 
     public UserNotes() {
     }
@@ -22,5 +25,29 @@ public class UserNotes {
 
     public void setBody(String body) {
         this.body = body;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
+
+    public String getNoteId() {
+        return noteId;
+    }
+
+    public void setNoteId(String noteId) {
+        this.noteId = noteId;
+    }
+
+    public Double getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Double createdAt) {
+        this.createdAt = createdAt;
     }
 }

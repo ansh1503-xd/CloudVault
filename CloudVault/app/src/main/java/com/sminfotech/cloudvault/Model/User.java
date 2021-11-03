@@ -12,7 +12,7 @@ public class User {
     Boolean panicSwitch;
     List<String> audioList;
     List<String> documentsList;
-    List<UserNotes> notesList;
+    List<String> notesList;
     long totalDataQuota;
     long usedDataQuota;
 
@@ -83,11 +83,11 @@ public class User {
         this.audioList = audioList;
     }
 
-    public List<UserNotes> getNotesList() {
+    public List<String> getNotesList() {
         return notesList;
     }
 
-    public void setNotesList(List<UserNotes> notesList) {
+    public void setNotesList(List<String> notesList) {
         this.notesList = notesList;
     }
 

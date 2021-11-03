@@ -41,6 +41,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.sminfotech.cloudvault.Fragments.EarnFragment;
 import com.sminfotech.cloudvault.Fragments.MoreFragment;
 import com.sminfotech.cloudvault.Fragments.ProfileFragment;
@@ -49,6 +50,10 @@ import com.sminfotech.cloudvault.Model.User;
 import com.sminfotech.cloudvault.Model.UserNotes;
 import com.sminfotech.cloudvault.Profile.ImageOrVideoActivity;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -68,6 +73,9 @@ public class MainActivity extends AppCompatActivity {
     public static SharedPreferences.Editor editor;
     public static Boolean isPanicSwitchOn = false;
     ActivityResultLauncher<String> externalStoragePermission;
+    UserNotes userNotes;
+    public static List<UserNotes> userNotesList = new ArrayList<>();
+    List<DocumentSnapshot> mArrayList = new ArrayList<>();
 
 
     @Override
@@ -75,10 +83,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomTabContainer = findViewById(R.id.bottomTabContainer);
         firestore = FirebaseFirestore.getInstance();
+
+
 
         sp = getSharedPreferences("panicSwitch", MODE_PRIVATE);
         editor = sp.edit();
@@ -90,6 +99,7 @@ public class MainActivity extends AppCompatActivity {
         loginuid = firebaseUser.getUid();
         setDataToModelFromFirebsae();
         setUpAppControl();
+        setUserNotesFromFirebase();
 
         Dialog dialog = new Dialog(MainActivity.this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -101,13 +111,16 @@ public class MainActivity extends AppCompatActivity {
 
         manager = (SensorManager) getSystemService(SENSOR_SERVICE);
 
-        destroyAppWhenShake(manager, MainActivity.this);
+
 
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
             @Override
             public void onInitializationComplete(InitializationStatus initializationStatus) {
                 setUpBottomNavigation();
                 dialog.dismiss();
+                if (user.getPanicSwitch()){
+                    destroyAppWhenShake(manager, MainActivity.this);
+                }
             }
         });
         dialog.show();
@@ -119,6 +132,35 @@ public class MainActivity extends AppCompatActivity {
         mAdView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
+    }
+
+    private void setUserNotesFromFirebase() {
+        firestore.collection("userNotes").whereEqualTo("uid",loginuid)
+                .addSnapshotListener(new EventListener<QuerySnapshot>() {
+                    @Override
+                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+                        if (value!=null){
+                            userNotesList.clear();
+                            mArrayList = value.getDocuments();
+                            for (int i = 0; i < mArrayList.size(); i++) {
+                                userNotes = new UserNotes();
+                                userNotes.setUid((String) mArrayList.get(i).get("uid"));
+                                userNotes.setNoteId((String) mArrayList.get(i).get("noteId"));
+                                userNotes.setTitle((String) mArrayList.get(i).get("title"));
+                                userNotes.setBody((String) mArrayList.get(i).get("body"));
+                                userNotes.setCreatedAt((Double) mArrayList.get(i).get("createdAt"));
+                                userNotesList.add(userNotes);
+                                Collections.sort(userNotesList, new Comparator<UserNotes>() {
+                                    @Override
+                                    public int compare(UserNotes userNotes, UserNotes t1) {
+                                        return t1.getCreatedAt().compareTo(userNotes.getCreatedAt());
+                                    }
+                                });
+                            }
+
+                        }
+                    }
+                });
     }
 
     private void setUpAppControl() {
@@ -177,7 +219,7 @@ public class MainActivity extends AppCompatActivity {
                     user.setInAppPassword((String) value.get("inAppPassword"));
                     user.setUid((String) value.get("uid"));
                     user.setAudioList((List<String>) value.get("audioList"));
-                    user.setNotesList((List<UserNotes>) value.get("notesList"));
+                    user.setNotesList((List<String>) value.get("notesList"));
                     user.setImageList((List<String>) value.get("imageList"));
                     user.setVideoList((List<String>) value.get("videoList"));
                     user.setDocumentsList((List<String>) value.get("documentsList"));

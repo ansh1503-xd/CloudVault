@@ -1,6 +1,7 @@
 package com.sminfotech.cloudvault.Profile;
 
 import static com.sminfotech.cloudvault.MainActivity.loginuid;
+import static com.sminfotech.cloudvault.MainActivity.user;
 import static com.unity3d.services.core.properties.ClientProperties.getActivity;
 
 import android.app.Dialog;
@@ -30,7 +31,7 @@ import java.io.File;
 
 public class ImageOrVideoActivity extends AppCompatActivity {
 
-    public static String imageUrl;
+    String imageUrl;
     ImageView imageFromIntent, close;
     FloatingActionButton fabDownloadImage;
     FirebaseFirestore firestore;
@@ -77,6 +78,36 @@ public class ImageOrVideoActivity extends AppCompatActivity {
                         @Override
                         public void onClick(View view) {
                             firestore.collection("user").document(loginuid).update("imageList", FieldValue.arrayRemove(imageUrl))
+                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void unused) {
+                                            Snackbar.make(deleteImage, "Deleted successfully...", Snackbar.LENGTH_LONG).show();
+                                            dialog.dismiss();
+                                            onBackPressed();
+                                        }
+                                    });
+                        }
+                    });
+                    cancelDialog.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            dialog.dismiss();
+                        }
+                    });
+
+                    dialog.show();
+                }else if (type.equals("video")){
+                    Dialog dialog = new Dialog(ImageOrVideoActivity.this);
+                    dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                    dialog.setContentView(R.layout.confirmation_popup);
+                    dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+                    dialog.setCancelable(false);
+                    TextView confirmDelete = dialog.findViewById(R.id.confirmDelete);
+                    TextView cancelDialog = dialog.findViewById(R.id.cancelDialog);
+                    confirmDelete.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            firestore.collection("user").document(loginuid).update("videoList", FieldValue.arrayRemove(imageUrl))
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void unused) {

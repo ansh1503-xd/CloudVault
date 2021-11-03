@@ -30,7 +30,7 @@ public class VaultActivity extends AppCompatActivity {
     BannerView bottomBanner;
     LinearLayout bottomBannerView;
     AdView adView;
-    LinearLayout llImage, llVideo;
+    LinearLayout llImage, llVideo, llNotes, llAudio;
     Boolean isFacebookAdsEnabled = true;
     AdListener listener;
 
@@ -43,6 +43,8 @@ public class VaultActivity extends AppCompatActivity {
         bottomBannerView = findViewById(R.id.bottomBannerView);
         llImage = findViewById(R.id.llImage);
         llVideo = findViewById(R.id.llVideo);
+        llNotes = findViewById(R.id.llNotes);
+        llAudio = findViewById(R.id.llAudio);
 
 
         bottomBanner = new BannerView(VaultActivity.this, appControl.getUnityBanner(), new UnityBannerSize(320, 50));
@@ -102,6 +104,23 @@ public class VaultActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+        llNotes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(VaultActivity.this, NotesActivity.class);
+                startActivity(i);
+            }
+        });
+
+        llAudio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(VaultActivity.this, UploadAudioActivity.class);
+                startActivity(i);
+            }
+        });
+
 
     }
 
