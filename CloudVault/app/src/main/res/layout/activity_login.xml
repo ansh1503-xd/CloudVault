@@ -137,6 +137,7 @@
             android:fontFamily="@font/nunito_regular"
             android:gravity="center"
             android:text="Or Login using"
+            android:visibility="gone"
             android:textColor="@color/forgot"
             android:textSize="17dp" />
 
@@ -144,7 +145,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:gravity="center">
+            android:gravity="center"
+            android:visibility="gone">
 
             <ImageView
                 android:id="@+id/googleSignIn"

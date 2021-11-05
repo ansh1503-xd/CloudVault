@@ -13,6 +13,7 @@ public class AppControl {
     String unityID;
     String unityInterstitial;
     Boolean enableLoad;
+    String unityRewarded;
 
     public Boolean getEnableLoad() {
         return enableLoad;
@@ -76,5 +77,13 @@ public class AppControl {
 
     public void setUnityInterstitial(String unityInterstitial) {
         this.unityInterstitial = unityInterstitial;
+    }
+
+    public String getUnityRewarded() {
+        return unityRewarded;
+    }
+
+    public void setUnityRewarded(String unityRewarded) {
+        this.unityRewarded = unityRewarded;
     }
 }

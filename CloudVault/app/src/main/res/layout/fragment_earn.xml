@@ -1,17 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Fragments.EarnFragment"
     android:background="@color/white">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Earn Fragment"
         android:gravity="center"
-        android:textColor="@color/black"/>
+        android:padding="20dp"
+        android:orientation="vertical">
+
+       <LinearLayout
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_gravity="center"
+           android:gravity="center">
+
+           <ImageView
+               android:layout_width="50dp"
+               android:layout_height="50dp"
+               android:src="@drawable/coin"
+               app:tint="@color/mainColor"
+               android:layout_gravity="center"/>
+
+           <TextView
+               android:id="@+id/tvCoins"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="1000"
+               android:textSize="30dp"
+               android:layout_marginStart="10dp"
+               android:fontFamily="@font/montserrat_bold"
+               android:textColor="@color/black"/>
+
+       </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nunito_regular"
+            android:text="1000 coins = 10 INR"
+            android:textColor="@color/mainColor"
+            android:textAlignment="center"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nunito_regular"
+            android:text="*Instructions : "
+            android:textColor="@color/mainColor"
+            android:textAlignment="viewStart"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="1. You will only get reward if you complete the given task.\n2. Skipped task will not be acceptable\n3. Min. withdraw amount will be 10 INR\n4. You will be rewarded 10 coins per ad"
+            android:fontFamily="@font/nunito_regular"
+            android:textColor="@color/lightGrey"
+            android:layout_marginStart="10dp"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnWatchAd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_bg"
+            android:text="Watch ad"
+            android:fontFamily="@font/nunito_regular"
+            android:textColor="@color/black"
+            android:textAllCaps="false"
+            android:enabled="false"
+            android:layout_marginTop="20dp"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnWithdraw"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_bg"
+            android:text="Withdraw"
+            android:fontFamily="@font/nunito_regular"
+            android:textColor="@color/black"
+            android:textAllCaps="false"
+            android:enabled="false"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/mainColor"
+            android:fontFamily="@font/nunito_regular"
+            android:text="Withdrawal History : "/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/black"/>
+
+    </LinearLayout>
+
 
 </FrameLayout>

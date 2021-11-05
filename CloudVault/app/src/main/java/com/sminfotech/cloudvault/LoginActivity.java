@@ -20,7 +20,6 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.auth.api.identity.SignInCredential;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -35,10 +34,16 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.sminfotech.cloudvault.Model.User;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
@@ -52,6 +57,7 @@ public class LoginActivity extends AppCompatActivity {
     GoogleSignInOptions gso;
     FirebaseUser firebaseUser;
     FirebaseFirestore firestore;
+    User user;
     int GOOGLE_SIGN_IN_CODE = 111;
 
     @Override
@@ -69,11 +75,12 @@ public class LoginActivity extends AppCompatActivity {
         firestore = FirebaseFirestore.getInstance();
 
 
+
         tvForgotPass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                auth.signOut();
-                mGoogleSignInClient.signOut();
+                Intent i = new Intent(LoginActivity.this, ForgotPasswordActivity.class);
+                startActivity(i);
             }
         });
 
@@ -153,27 +160,19 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Dialog dialog = new Dialog(LoginActivity.this);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.loading_dialog);
-        dialog.setCancelable(false);
-        dialog.getWindow().getDecorView().setBackgroundResource(android.R.color.transparent);
-        dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
-        dialog.show();
-        TextView tvText = dialog.findViewById(R.id.tvText);
-        tvText.setText("Signing in\nwith Google...");
+
         if (requestCode == GOOGLE_SIGN_IN_CODE) {
             try {
                 Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
                 GoogleSignInAccount account = task.getResult(ApiException.class);
                 String idToken = account.getIdToken();
                 authWithGoogle(idToken);
-
             } catch (ApiException e) {
                 Snackbar.make(googleSignIn, e.getLocalizedMessage(), Snackbar.LENGTH_LONG).show();
             }
+
         }
+
 
     }
 
@@ -185,7 +184,8 @@ public class LoginActivity extends AppCompatActivity {
         dialog.getWindow().getDecorView().setBackgroundResource(android.R.color.transparent);
         dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
-        dialog.show();
+        TextView tvText = dialog.findViewById(R.id.tvText);
+        tvText.setText("Signing in\nwith Google...");
         AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
         auth.signInWithCredential(credential).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
             @Override
@@ -193,28 +193,93 @@ public class LoginActivity extends AppCompatActivity {
                 dialog.dismiss();
                 firebaseUser = auth.getCurrentUser();
 
+                firestore.collection("user").document(firebaseUser.getUid()).addSnapshotListener(new EventListener<DocumentSnapshot>() {
+                    @Override
+                    public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                        if (value != null) {
+                            user = new User();
+                            user.setEmail((String) value.get("email"));
+                            user.setName((String) value.get("fullName"));
+                            user.setInAppPassword((String) value.get("inAppPassword"));
+                            user.setUid((String) value.get("uid"));
+                            user.setAudioList((List<String>) value.get("audioList"));
+                            user.setNotesList((List<String>) value.get("notesList"));
+                            user.setImageList((List<String>) value.get("imageList"));
+                            user.setVideoList((List<String>) value.get("videoList"));
+                            user.setDocumentsList((List<String>) value.get("documentsList"));
+                            user.setPanicSwitch((Boolean) value.get("panicSwitch"));
+                            user.setTotalDataQuota((long) value.get("totalDataQuota"));
+                            user.setUsedDataQuota((long) value.get("usedDataQuota"));
+                            user.setTotalCoins((long) value.get("totalCoins"));
+                        }
+                    }
+                });
+
                 Map<String, Object> userData = new HashMap<>();
-                userData.put("uid",firebaseUser.getUid());
-                userData.put("imageList", Arrays.asList());
-                userData.put("inAppPassword","");
-                userData.put("videoList", Arrays.asList());
-                userData.put("notesList",Arrays.asList());
-                userData.put("documentsList",Arrays.asList());
-                userData.put("audioList",Arrays.asList());
-                userData.put("email", firebaseUser.getEmail());
-                userData.put("fullName", firebaseUser.getDisplayName());
-                userData.put("panicSwitch",false);
-                userData.put("usedDataQuota",0);
-                userData.put("totalDataQuota",100);
+                if (user!=null){
+                    userData.put("uid", firebaseUser.getUid());
+                    userData.put("inAppPassword", "");
+                    userData.put("notesList", Arrays.asList());
+                    userData.put("documentsList", Arrays.asList());
+                    userData.put("audioList", Arrays.asList());
+                    userData.put("email", firebaseUser.getEmail());
+                    userData.put("fullName", firebaseUser.getDisplayName());
+                    userData.put("panicSwitch", false);
+                    userData.put("usedDataQuota", 0);
+                    userData.put("totalDataQuota", 100);
+                    userData.put("totalCoins", 100);
+                }else{
+                    userData.put("uid", firebaseUser.getUid());
+                    userData.put("inAppPassword", "");
+                    userData.put("notesList", Arrays.asList());
+                    userData.put("documentsList", Arrays.asList());
+                    userData.put("audioList", Arrays.asList());
+                    userData.put("email", firebaseUser.getEmail());
+                    userData.put("fullName", firebaseUser.getDisplayName());
+                    userData.put("panicSwitch", false);
+                    userData.put("usedDataQuota", 0);
+                    userData.put("totalDataQuota", 100);
+                    userData.put("totalCoins", 100);
+                }
+                if(user.getImageList().size()>0){
+                    userData.put("imageList", Arrays.asList(user.getImageList()));
+                }else{
+                    userData.put("imageList", Arrays.asList());
+                }
 
+                if (user.getVideoList().size()>0){
+                    userData.put("videoList", Arrays.asList(user.getVideoList()));
+                }else {
+                    userData.put("videoList", Arrays.asList());
+                }
 
-                firestore.collection("user").document(firebaseUser.getUid()).set(userData).addOnSuccessListener(new OnSuccessListener<Void>() {
+                DocumentReference ref = firestore.collection("user").document(firebaseUser.getUid());
+                ref.set(userData).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
                         Snackbar.make(googleSignIn, "Logged in successfully", Snackbar.LENGTH_SHORT).show();
                         dialog.dismiss();
                     }
                 });
+//                ref.addSnapshotListener(new EventListener<DocumentSnapshot>() {
+//                    @Override
+//                    public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+//                        if (value.exists()){
+//                            if (!value.get("uid").equals(firebaseUser.getUid())) {
+//
+//                            }
+//                        }else{
+//                            ref.set(userData).addOnSuccessListener(new OnSuccessListener<Void>() {
+//                                @Override
+//                                public void onSuccess(Void unused) {
+//                                    Snackbar.make(googleSignIn, "Logged in successfully", Snackbar.LENGTH_SHORT).show();
+//                                    dialog.dismiss();
+//                                }
+//                            });
+//                        }
+//                    }
+//                });
+
                 editor.putBoolean("isLoggedIn", true);
                 editor.putString("uid", firebaseUser.getUid());
                 editor.commit();
@@ -231,5 +296,6 @@ public class LoginActivity extends AppCompatActivity {
                 Snackbar.make(googleSignIn, e.getLocalizedMessage(), Snackbar.LENGTH_LONG).show();
             }
         });
+        dialog.show();
     }
 }

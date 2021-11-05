@@ -5,9 +5,11 @@ import android.app.Activity;
 import android.media.MediaMetadataRetriever;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Chronometer;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -40,7 +42,6 @@ public class AudioAdapter extends RecyclerView.Adapter<AudioAdapter.AudioViewHol
     @Override
     public void onBindViewHolder(@NonNull AudioViewHolder holder, @SuppressLint("RecyclerView") int position) {
         MediaPlayer mediaPlayer = new MediaPlayer();
-
         try {
             mediaPlayer.setDataSource(activity, Uri.parse(audioList.get(position)));
             mediaPlayer.prepare();
@@ -108,7 +109,7 @@ public class AudioAdapter extends RecyclerView.Adapter<AudioAdapter.AudioViewHol
 
         ImageView btnPlay, btnPause;
         SeekBar sbAudio;
-        TextView tvTime;
+        Chronometer tvTime;
 
         public AudioViewHolder(@NonNull View itemView) {
             super(itemView);

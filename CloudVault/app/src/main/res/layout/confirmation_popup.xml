@@ -19,18 +19,18 @@
             android:paddingTop="15dp">
 
             <TextView
+                android:id="@+id/popupHeading"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Delete Image"
                 android:textColor="@color/mainColor"
                 android:fontFamily="@font/nauam_bold"
                 android:gravity="center"
                 android:textSize="17dp" />
 
             <TextView
+                android:id="@+id/popupBody"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Are you sure?\nYou want to delete this image"
                 android:textColor="@color/black"
                 android:layout_marginTop="15dp"
                 android:fontFamily="@font/nauam_regular"

@@ -21,6 +21,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.NoActionBar">
         <activity
+            android:name=".Earn.WithdrawActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ForgotPasswordActivity"
+            android:exported="true" />
+        <activity
+            android:name=".Profile.UploadDocumentsActivity"
+            android:exported="true" />
+        <activity
             android:name=".Profile.UploadAudioActivity"
             android:exported="true" />
         <activity
@@ -28,6 +37,12 @@
             android:exported="true" />
         <activity
             android:name=".Profile.AddNoteActivity"
+            android:exported="true" />
+        <activity
+            android:name=".LoginActivity"
+            android:exported="true" />
+        <activity
+            android:name=".SignupActivity"
             android:exported="true" />
         <activity
             android:name=".Profile.NotesActivity"
@@ -72,10 +87,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".LoginActivity"
-            android:exported="true" />
-        <activity android:name=".SignupActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

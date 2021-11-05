@@ -42,6 +42,13 @@ public class AddNoteActivity extends AppCompatActivity {
         tvSave = findViewById(R.id.tvSave);
         firestore = FirebaseFirestore.getInstance();
 
+        tvCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
+
         tvSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -103,6 +103,7 @@ public class SignupActivity extends AppCompatActivity {
                                 userData.put("panicSwitch",false);
                                 userData.put("usedDataQuota",0);
                                 userData.put("totalDataQuota",100);
+                                userData.put("totalCoins",100);
 
 
                                 firestore.collection("user").document(uid).set(userData).addOnSuccessListener(new OnSuccessListener<Void>() {

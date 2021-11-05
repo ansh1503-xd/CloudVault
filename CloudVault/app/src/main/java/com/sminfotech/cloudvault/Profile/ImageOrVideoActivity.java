@@ -1,7 +1,6 @@
 package com.sminfotech.cloudvault.Profile;
 
 import static com.sminfotech.cloudvault.MainActivity.loginuid;
-import static com.sminfotech.cloudvault.MainActivity.user;
 import static com.unity3d.services.core.properties.ClientProperties.getActivity;
 
 import android.app.Dialog;
@@ -28,6 +27,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.sminfotech.cloudvault.R;
 
 import java.io.File;
+import java.util.UUID;
 
 public class ImageOrVideoActivity extends AppCompatActivity {
 
@@ -74,6 +74,10 @@ public class ImageOrVideoActivity extends AppCompatActivity {
                     dialog.setCancelable(false);
                     TextView confirmDelete = dialog.findViewById(R.id.confirmDelete);
                     TextView cancelDialog = dialog.findViewById(R.id.cancelDialog);
+                    TextView popupHeading = dialog.findViewById(R.id.popupHeading);
+                    TextView popupBody = dialog.findViewById(R.id.popupBody);
+                    popupHeading.setText("Delete Image");
+                    popupBody.setText("Are you sure?\nYou want to delete this image?");
                     confirmDelete.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
@@ -104,6 +108,10 @@ public class ImageOrVideoActivity extends AppCompatActivity {
                     dialog.setCancelable(false);
                     TextView confirmDelete = dialog.findViewById(R.id.confirmDelete);
                     TextView cancelDialog = dialog.findViewById(R.id.cancelDialog);
+                    TextView popupHeading = dialog.findViewById(R.id.popupHeading);
+                    TextView popupBody = dialog.findViewById(R.id.popupBody);
+                    popupHeading.setText("Delete Video");
+                    popupBody.setText("Are you sure?\nYou want to delete this video?");
                     confirmDelete.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
@@ -158,10 +166,12 @@ public class ImageOrVideoActivity extends AppCompatActivity {
 
         DownloadManager.Request request = new DownloadManager.Request(downloadUri);
 
+        String random =UUID.randomUUID().toString();
+
         request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI | DownloadManager.Request.NETWORK_MOBILE)
-                .setAllowedOverRoaming(false).setTitle("Cloud Vault")
+                .setAllowedOverRoaming(false).setTitle(random)
                 .setDescription("Downloading")
-                .setDestinationInExternalPublicDir("/CloudVault", "fileName.jpg");
+                .setDestinationInExternalPublicDir("/CloudVault/Media", random);
         mgr.enqueue(request);
 
         Toast.makeText(getActivity(), "Downloading...", Toast.LENGTH_LONG).show();

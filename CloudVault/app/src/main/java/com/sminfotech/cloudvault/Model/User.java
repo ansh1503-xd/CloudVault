@@ -15,6 +15,7 @@ public class User {
     List<String> notesList;
     long totalDataQuota;
     long usedDataQuota;
+    long totalCoins;
 
     public User() {
     }
@@ -113,5 +114,13 @@ public class User {
 
     public void setUsedDataQuota(long usedDataQuota) {
         this.usedDataQuota = usedDataQuota;
+    }
+
+    public long getTotalCoins() {
+        return totalCoins;
+    }
+
+    public void setTotalCoins(long totalCoins) {
+        this.totalCoins = totalCoins;
     }
 }

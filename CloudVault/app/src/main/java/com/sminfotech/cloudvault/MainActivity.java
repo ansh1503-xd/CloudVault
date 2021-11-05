@@ -2,27 +2,20 @@ package com.sminfotech.cloudvault;
 
 import static com.sminfotech.cloudvault.Profile.PanicSwitchActivity.destroyAppWhenShake;
 
-import android.Manifest;
 import android.app.Dialog;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
-import android.content.res.ColorStateList;
+import android.content.pm.ActivityInfo;
 import android.hardware.SensorManager;
-import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.Window;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -47,11 +40,10 @@ import com.sminfotech.cloudvault.Fragments.MoreFragment;
 import com.sminfotech.cloudvault.Fragments.ProfileFragment;
 import com.sminfotech.cloudvault.Model.AppControl;
 import com.sminfotech.cloudvault.Model.User;
+import com.sminfotech.cloudvault.Model.UserDocuments;
 import com.sminfotech.cloudvault.Model.UserNotes;
-import com.sminfotech.cloudvault.Profile.ImageOrVideoActivity;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -64,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
     Fragment fragment = null;
     FirebaseFirestore firestore;
     public static User user = new User();
+    public static UserDocuments userDocuments;
     public static AppControl appControl = new AppControl();
     FirebaseUser firebaseUser;
     AdView adView;
@@ -75,7 +68,9 @@ public class MainActivity extends AppCompatActivity {
     ActivityResultLauncher<String> externalStoragePermission;
     UserNotes userNotes;
     public static List<UserNotes> userNotesList = new ArrayList<>();
+    public static List<UserDocuments> userDocumentsList = new ArrayList<>();
     List<DocumentSnapshot> mArrayList = new ArrayList<>();
+    List<DocumentSnapshot> mArrayListDocs = new ArrayList<>();
 
 
     @Override
@@ -87,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
         bottomTabContainer = findViewById(R.id.bottomTabContainer);
         firestore = FirebaseFirestore.getInstance();
 
-
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         sp = getSharedPreferences("panicSwitch", MODE_PRIVATE);
         editor = sp.edit();
@@ -97,9 +92,11 @@ public class MainActivity extends AppCompatActivity {
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
         loginuid = firebaseUser.getUid();
+        bottomNavigationView.setItemIconTintList(null);
         setDataToModelFromFirebsae();
         setUpAppControl();
         setUserNotesFromFirebase();
+        setUserDocumentsFromFirebase();
 
         Dialog dialog = new Dialog(MainActivity.this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -110,8 +107,6 @@ public class MainActivity extends AppCompatActivity {
         tvText.setText("Loading...");
 
         manager = (SensorManager) getSystemService(SENSOR_SERVICE);
-
-
 
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
             @Override
@@ -134,12 +129,32 @@ public class MainActivity extends AppCompatActivity {
         mAdView.loadAd(adRequest);
     }
 
+    private void setUserDocumentsFromFirebase() {
+        firestore.collection("userDocs").whereEqualTo("uid", loginuid).addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+                if (value != null) {
+                    userDocumentsList.clear();
+                    mArrayListDocs = value.getDocuments();
+                    for (int i = 0; i < mArrayListDocs.size(); i++) {
+                        userDocuments = new UserDocuments();
+                        userDocuments.setDocId((String) mArrayListDocs.get(i).get("docId"));
+                        userDocuments.setDocLink((String) mArrayListDocs.get(i).get("docLink"));
+                        userDocuments.setUid((String) mArrayListDocs.get(i).get("uid"));
+                        userDocuments.setName((String) mArrayListDocs.get(i).get("name"));
+                        userDocumentsList.add(userDocuments);
+                    }
+                }
+            }
+        });
+    }
+
     private void setUserNotesFromFirebase() {
-        firestore.collection("userNotes").whereEqualTo("uid",loginuid)
+        firestore.collection("userNotes").whereEqualTo("uid", loginuid)
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
-                        if (value!=null){
+                        if (value != null) {
                             userNotesList.clear();
                             mArrayList = value.getDocuments();
                             for (int i = 0; i < mArrayList.size(); i++) {
@@ -177,6 +192,7 @@ public class MainActivity extends AppCompatActivity {
                             appControl.setUnityInterstitial((String) value.get("unityInterstitial"));
                             appControl.setTestMode((Boolean) value.get("testMode"));
                             appControl.setEnableLoad((Boolean) value.get("enableLoad"));
+                            appControl.setUnityRewarded((String) value.get("unityRewarded"));
                         }
                     }
                 });
@@ -206,7 +222,7 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
-        bottomNavigationView.setItemIconTintList(null);
+
     }
 
     private void setDataToModelFromFirebsae() {
@@ -226,6 +242,7 @@ public class MainActivity extends AppCompatActivity {
                     user.setPanicSwitch((Boolean) value.get("panicSwitch"));
                     user.setTotalDataQuota((long) value.get("totalDataQuota"));
                     user.setUsedDataQuota((long) value.get("usedDataQuota"));
+                    user.setTotalCoins((long) value.get("totalCoins"));
                 }
             }
         });

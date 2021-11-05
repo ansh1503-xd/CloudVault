@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:background="@drawable/edit_text_bg"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_margin="10dp">
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/document"
+            app:tint="@color/mainColor" />
+
+       <LinearLayout
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_gravity="center"
+           android:gravity="center">
+
+           <TextView
+               android:id="@+id/tvDocName"
+               android:layout_width="90dp"
+               android:layout_height="wrap_content"
+               android:text="Document Name"
+               android:textColor="@color/black"
+               android:ellipsize="end"
+               android:fontFamily="@font/nunito_regular"
+               android:singleLine="true" />
+
+           <ImageView
+               android:id="@+id/ivDownload"
+               android:layout_width="40dp"
+               android:layout_height="40dp"
+               android:src="@drawable/download"
+               android:padding="7dp"
+               app:tint="@color/mainColor" />
+
+       </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
