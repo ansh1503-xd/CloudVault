@@ -4,10 +4,13 @@ import static com.sminfotech.cloudvault.MainActivity.appControl;
 import static com.sminfotech.cloudvault.MainActivity.loginuid;
 import static com.sminfotech.cloudvault.MainActivity.user;
 
+import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.TextView;
 
 import androidx.appcompat.widget.AppCompatButton;
@@ -15,6 +18,8 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.sminfotech.cloudvault.Earn.WithdrawActivity;
+import com.sminfotech.cloudvault.Profile.ImageOrVideoActivity;
 import com.sminfotech.cloudvault.R;
 import com.unity3d.ads.IUnityAdsListener;
 import com.unity3d.ads.UnityAds;
@@ -46,7 +51,28 @@ public class EarnFragment extends Fragment {
         btnWithdraw.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                if (user.getTotalCoins()<1000){
+                    Dialog dialog = new Dialog(requireActivity());
+                    dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                    dialog.setContentView(R.layout.alert_popup);
+                    dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+                    dialog.setCancelable(false);
+                    TextView cancelDialog = dialog.findViewById(R.id.cancelDialog);
+                    TextView popupHeading = dialog.findViewById(R.id.popupHeading);
+                    TextView popupBody = dialog.findViewById(R.id.popupBody);
+                    popupHeading.setText("Withdraw");
+                    popupBody.setText("You have not reached withdrawal limit yet.\nComplete 1000 coins to withdraw");
+                    cancelDialog.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            dialog.dismiss();
+                        }
+                    });
+                    dialog.show();
+                }else{
+                    Intent i = new Intent(getContext(), WithdrawActivity.class);
+                    startActivity(i);
+                }
             }
         });
 

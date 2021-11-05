@@ -32,7 +32,8 @@
         <entry key="..\:/CloudVault/CloudVault/app/src/main/res/layout/activity_upload_image.xml" value="0.2" />
         <entry key="..\:/CloudVault/CloudVault/app/src/main/res/layout/activity_upload_video.xml" value="0.25" />
         <entry key="..\:/CloudVault/CloudVault/app/src/main/res/layout/activity_vault.xml" value="0.2" />
-        <entry key="..\:/CloudVault/CloudVault/app/src/main/res/layout/activity_withdraw.xml" value="0.25" />
+        <entry key="..\:/CloudVault/CloudVault/app/src/main/res/layout/activity_withdraw.xml" value="0.2" />
+        <entry key="..\:/CloudVault/CloudVault/app/src/main/res/layout/alert_popup.xml" value="0.17083333333333334" />
         <entry key="..\:/CloudVault/CloudVault/app/src/main/res/layout/audio_custom_layout.xml" value="0.25" />
         <entry key="..\:/CloudVault/CloudVault/app/src/main/res/layout/audio_list_item.xml" value="0.4" />
         <entry key="..\:/CloudVault/CloudVault/app/src/main/res/layout/confirmation_popup.xml" value="0.264" />

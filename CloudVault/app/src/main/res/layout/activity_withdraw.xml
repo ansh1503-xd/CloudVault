@@ -34,7 +34,7 @@
         android:padding="20dp">
 
         <ImageView
-            android:id="@+id/backToLogin"
+            android:id="@+id/back"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:padding="10dp"
@@ -63,13 +63,25 @@
             android:textColorHint="@color/hintTextColor" />
 
         <EditText
+            android:id="@+id/etNameWithdraw"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/edit_text_bg"
+            android:fontFamily="@font/nunito_regular"
+            android:hint="Name"
+            android:paddingHorizontal="15dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/hintTextColor" />
+
+        <EditText
             android:id="@+id/etMobileWithdraw"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/edit_text_bg"
             android:fontFamily="@font/nunito_regular"
-            android:hint="Mobile number / UPI ID"
+            android:hint="PayTM number / UPI ID"
             android:paddingHorizontal="15dp"
             android:textColor="@color/black"
             android:textColorHint="@color/hintTextColor" />
@@ -83,11 +95,12 @@
             android:fontFamily="@font/nunito_regular"
             android:hint="Enter coins to withdraw"
             android:paddingHorizontal="15dp"
+            android:inputType="number"
             android:textColor="@color/black"
             android:textColorHint="@color/hintTextColor" />
 
         <LinearLayout
-            android:id="@+id/btnNextForgot"
+            android:id="@+id/btnWithdraw"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"

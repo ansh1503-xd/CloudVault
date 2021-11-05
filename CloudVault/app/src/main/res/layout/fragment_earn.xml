@@ -86,7 +86,6 @@
             android:fontFamily="@font/nunito_regular"
             android:textColor="@color/black"
             android:textAllCaps="false"
-            android:enabled="false"
             android:layout_marginTop="10dp"/>
 
         <TextView
